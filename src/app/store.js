@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+
+import messages from "../features/Messages/MessagesSlice";
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    messages
   },
 });
