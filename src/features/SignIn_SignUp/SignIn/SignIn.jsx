@@ -17,7 +17,7 @@ export default function SignIn() {
     const [password, setPassword] = useInput("");
 
     const users = useSelector(UsersSelector);
-    console.log(users)
+    
     return (
         <div className="SignIn_SignUp">
             <h1>This is  SignIn page</h1>

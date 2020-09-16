@@ -34,6 +34,8 @@ export const signInWithGoogle = (users) => auth.signInWithPopup(provider)
 
                 });
             };
+    })
+    .catch(error => {
     });
 
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
@@ -54,6 +56,8 @@ export const signInWithGoogle = (users) => auth.signInWithPopup(provider)
 
                 });
             };
+    })
+    .catch(error => {
     });
 
 export {db, auth, storage};
