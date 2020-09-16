@@ -8,7 +8,7 @@ import { db, auth } from "../../app/firebase";
 import {MessageSelector, updateMessages} from "../Messages/MessagesSlice";
 
 import MessageList from "../Messages/MessageList/MessageList.jsx";
-
+import MessageAdding from "../Messages/MessageAdding/MessageAdding";
 
 export default function Main() {
 
@@ -18,7 +18,7 @@ export default function Main() {
     useEffect(() =>{
         //This is how to get info from firebase
           db.collection("messages").onSnapshot(snapshot => {
-            dispatch(updateMessages( snapshot.docs.map(doc => ({ ...doc.data() }))));
+            dispatch(updateMessages( snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))));
           })
       }, [])
 
@@ -26,6 +26,7 @@ export default function Main() {
         <div className="Main">
             <MessageList messages={messages} />
             <button onClick={() => auth.signOut()}>LogOut</button>
+            <MessageAdding />
         </div>
     )
 }
