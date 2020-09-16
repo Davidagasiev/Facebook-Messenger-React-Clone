@@ -6,7 +6,6 @@ import "./Main.scss";
 
 import { db, auth } from "../../app/firebase";
 import {MessageSelector, updateMessages} from "../Messages/MessagesSlice";
-// import {CurrentUserSelector} from "../Users/CurrentUserSlice";
 
 import MessageList from "../Messages/MessageList/MessageList.jsx";
 
@@ -21,7 +20,6 @@ export default function Main() {
           db.collection("messages").onSnapshot(snapshot => {
             dispatch(updateMessages( snapshot.docs.map(doc => ({ ...doc.data() }))));
           })
-          
       }, [])
 
     return (

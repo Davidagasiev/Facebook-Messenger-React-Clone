@@ -18,42 +18,42 @@ const
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider)
+export const signInWithGoogle = (users) => auth.signInWithPopup(provider)
     .then(result => {
-        const user = result.user;
+        const newUser = result.user;
+            if(!(users.some(user => user.uid === newUser.uid))){
+                db.collection("users").doc(newUser.uid).set({
+                    uid: newUser.uid,
+                    displayName: newUser.displayName,
+                    photoURL: newUser.photoURL
+                })
+                .then(function(docRef) {
 
-        db.collection("users").doc(user.uid).set({
-            uid: user.uid,
-            displayName: user.displayName,
-            photoURL: user.photoURL
-        })
-        .then(function(docRef) {
-          //   console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
-          //   console.error("Error adding document: ", error);
-        });
+                })
+                .catch(function(error) {
 
+                });
+            };
     });
 
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
     facebookProvider.setCustomParameters({ prompt: 'select_account' });
-    export const signInWithFacebook = () => auth.signInWithPopup(facebookProvider)
-        .then(result => {
-            const user = result.user;
-    
-            db.collection("users").doc(user.uid).set({
-                uid: user.uid,
-                displayName: user.displayName,
-                photoURL: user.photoURL
-            })
-            .then(function(docRef) {
+    export const signInWithFacebook = (users) => auth.signInWithPopup(facebookProvider)
+    .then(result => {
+        const newUser = result.user;
+            if(!(users.some(user => user.uid === newUser.uid))){
+                db.collection("users").doc(newUser.uid).set({
+                    uid: newUser.uid,
+                    displayName: newUser.displayName,
+                    photoURL: newUser.photoURL
+                })
+                .then(function(docRef) {
 
-            })
-            .catch(function(error) {
-                
-            });
-    
-        });
+                })
+                .catch(function(error) {
+
+                });
+            };
+    });
 
 export {db, auth, storage};

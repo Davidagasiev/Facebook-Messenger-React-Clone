@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { useDispatch} from 'react-redux';
+import { Route, Switch } from "react-router-dom";
 
-import { auth } from "./app/firebase";
+import { auth, db } from "./app/firebase";
 
-import {CurrentUserSelector, setCurrentUser} from "./features/Users/CurrentUserSlice";
+import {setCurrentUser} from "./features/Users/CurrentUserSlice";
+import {updateUsers} from "./features/Users/UsersSlice";
 
 import SignIn from "./features/SignIn_SignUp/SignIn/SignIn.jsx";
 import SignUp from "./features/SignIn_SignUp/SignUp/SignUp.jsx";
@@ -13,9 +14,6 @@ import Main from "./features/Main/Main.jsx";
 function App(props) {
 
   const dispatch = useDispatch();
-
-  const currentUser = useSelector(CurrentUserSelector);
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -37,6 +35,14 @@ function App(props) {
       unsubscribe();
     }
   }, [ dispatch ])
+
+
+  useEffect(() =>{
+    //This is how to get info from firebase
+      db.collection("users").onSnapshot(snapshot => {
+        dispatch(updateUsers( snapshot.docs.map(doc => ({ ...doc.data() }))));
+      })
+  }, [])
 
 
   return (
