@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Message from '../Message/Message'
+import Message from '../Message/Message.jsx'
 import "./MessageList.scss";
 
 export default function MessageList(props) {

@@ -1,29 +1,53 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import { db } from "./app/firebase";
-import {MessageSelector, updateMessages} from "./features/Messages/MessagesSlice";
-import MessageList from "./features/Messages/MessageList/MessageList";
+import { auth } from "./app/firebase";
 
+import {CurrentUserSelector, setCurrentUser} from "./features/Users/CurrentUserSlice";
 
-function App() {
+import SignIn from "./features/SignIn_SignUp/SignIn/SignIn.jsx";
+import SignUp from "./features/SignIn_SignUp/SignUp/SignUp.jsx";
+import Main from "./features/Main/Main.jsx";
 
-  const messages = useSelector(MessageSelector);
+function App(props) {
+
   const dispatch = useDispatch();
 
-  useEffect(() =>{
-    //This is how to get info from firebase
-      db.collection("messages").onSnapshot(snapshot => {
-        dispatch(updateMessages( snapshot.docs.map(doc => ({ ...doc.data() }))));
-      })
-      
-  }, [])
+  const currentUser = useSelector(CurrentUserSelector);
+
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if(authUser) {
+        //If User Logged In...
+        const {displayName, email, uid, photoURL} = authUser;
+        dispatch(setCurrentUser({displayName, email, uid, photoURL}));
+        props.history.push("/");
+      }else{
+        //If User Logges Out...
+        dispatch(setCurrentUser(null));
+        if(props.location.pathname !== "/SignUp") {
+          props.history.push("/SignIn");
+        }
+      }
+    })
+
+    return () => {
+      unsubscribe();
+    }
+  }, [ dispatch ])
 
 
   return (
     <div className="App">
-      <h1>Facebook messenger react clone</h1>
-      <MessageList messages={messages} />
+
+        <Switch>
+          <Route exact path="/" component={Main}/>
+          <Route exact path="/SignIn" component={SignIn}/>
+          <Route exact path="/SignUp" component={SignUp}/>
+        </Switch>
+
     </div>
   );
 }
