@@ -2,6 +2,7 @@ import React from 'react'
 
 import "../SignIn_SignUp.scss";
 import SignInFunc from "./Functions";
+import {signInWithGoogle, signInWithFacebook} from "../../../app/firebase";
 
 import useInput from "../../../Hooks/useInput";
 
@@ -9,8 +10,8 @@ import { Link } from "react-router-dom";
 
 export default function SignIn() {
 
-    const [email, setEmail, resetEmail] = useInput("");
-    const [password, setPassword, resetPassword] = useInput("");
+    const [email, setEmail] = useInput("");
+    const [password, setPassword] = useInput("");
 
     return (
         <div className="SignIn_SignUp">
@@ -23,6 +24,8 @@ export default function SignIn() {
                 <input type="password" placeholder="password" value={password} onChange={setPassword}/>
                 <button type="submit">SignIn</button>
             </form>
+            <button onClick={signInWithGoogle}>Sign in with google</button>
+            <button onClick={signInWithFacebook}>Sign in with facebook</button>
             <Link to="/SignUp">SignUp</Link>
         </div>
     )

@@ -8,9 +8,9 @@ import useInput from "../../../Hooks/useInput";
 
 export default function SignUp() {
 
-    const [username, setUsername, resetUserName] = useInput("");
-    const [email, setEmail, resetEmail] = useInput("");
-    const [password, setPassword, resetPassword] = useInput("");
+    const [username, setUsername] = useInput("");
+    const [email, setEmail] = useInput("");
+    const [password, setPassword] = useInput("");
 
     return (
         <div className="SignIn_SignUp">

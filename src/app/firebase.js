@@ -16,5 +16,44 @@ const
     auth    = firebase.auth(),
     storage = firebase.storage();
 
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
+export const signInWithGoogle = () => auth.signInWithPopup(provider)
+    .then(result => {
+        const user = result.user;
+
+        db.collection("users").doc(user.uid).set({
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL
+        })
+        .then(function(docRef) {
+          //   console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          //   console.error("Error adding document: ", error);
+        });
+
+    });
+
+    const facebookProvider = new firebase.auth.FacebookAuthProvider();
+    facebookProvider.setCustomParameters({ prompt: 'select_account' });
+    export const signInWithFacebook = () => auth.signInWithPopup(facebookProvider)
+        .then(result => {
+            const user = result.user;
+    
+            db.collection("users").doc(user.uid).set({
+                uid: user.uid,
+                displayName: user.displayName,
+                photoURL: user.photoURL
+            })
+            .then(function(docRef) {
+
+            })
+            .catch(function(error) {
+                
+            });
+    
+        });
 
 export {db, auth, storage};
