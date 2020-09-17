@@ -1,13 +1,15 @@
 import React from 'react'
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import "../SignIn_SignUp.scss";
 import SignInFunc from "./Functions";
 
+import Welcome from '../../Welcome/Welcome.jsx';
 import {signInWithGoogle, signInWithFacebook} from "../../../app/firebase";
 import {UsersSelector} from "../../Users/UsersSlice";
 import useInput from "../../../Hooks/useInput";
+import { Button, TextField } from '@material-ui/core';
 
 
 
@@ -20,18 +22,29 @@ export default function SignIn() {
     
     return (
         <div className="SignIn_SignUp">
-            <h1>This is  SignIn page</h1>
+            <Welcome style={{paddingTop: "50px"}} />
+            <div className="sign_nav">
+                <NavLink className="site" to="/SignIn" activeClassName="activeSite">Sign In</NavLink>
+                <NavLink to="/SignUp" activeClassName="activeSite">Sign Up</NavLink>
+            </div>
+
             <form onSubmit={(e) => {
                 e.preventDefault();
                 SignInFunc(email, password);
                 }}>
-                <input type="text" placeholder="email" value={email} onChange={setEmail}/>
-                <input type="password" placeholder="password" value={password} onChange={setPassword}/>
-                <button type="submit">SignIn</button>
+                <TextField type="text" label="Email" value={email} onChange={setEmail}/>
+
+                <TextField type="password" label="Password" value={password} onChange={setPassword}/>
+                
+                <Button variant="contained" color="primary" type="submit">Sign In</Button>
             </form>
-            <button onClick={() => signInWithGoogle(users)}>Sign in with google</button>
-            <button onClick={() => signInWithFacebook(users)}>Sign in with facebook</button>
-            <Link to="/SignUp">SignUp</Link>
+            <div className="quick_access">
+                <p>Quick access with</p>
+                <div>
+                    <button className="signIn_with" style={{backgroundImage: "url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBNqj_BACxuoGE7co2RFznug8f_xcjNR0Lng&usqp=CAU)"}} onClick={() => signInWithGoogle(users)}></button>
+                    <button className="signIn_with" style={{backgroundImage: "url(https://pngimg.com/uploads/facebook_logos/facebook_logos_PNG19754.png)"}} onClick={() => signInWithFacebook(users)}></button>
+                </div>
+            </div>
         </div>
     )
 }

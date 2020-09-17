@@ -1,0 +1,42 @@
+.Message{
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-end;
+
+    .MuiAvatar-root{
+        width: 37px;
+        height: 37px;
+        z-index: -2;
+        margin-right: 10px;
+    }
+
+}
+
+.Message_text{
+    max-width: 50%;
+    border-radius: 20px;
+    padding: 10px;
+
+    span{
+        word-wrap: break-word;
+    }
+}
+
+.current_user_is_author{
+    flex-direction: row-reverse;
+
+    .Message_text{
+        background-color: #0099FF;
+        color: white;
+    }
+}
+
+.other_user_is_author{
+    flex-direction: row;
+    
+    .Message_text{
+    background-color: #F1F0F0;
+    color: black;
+    }
+}

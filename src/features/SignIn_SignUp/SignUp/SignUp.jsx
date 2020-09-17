@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "../SignIn_SignUp.scss";
@@ -8,6 +8,8 @@ import {signInWithGoogle, signInWithFacebook} from "../../../app/firebase";
 import {UsersSelector} from "../../Users/UsersSlice";
 
 import useInput from "../../../Hooks/useInput";
+import Welcome from '../../Welcome/Welcome';
+import { Button, TextField } from '@material-ui/core';
 
 export default function SignUp() {
 
@@ -19,19 +21,30 @@ export default function SignUp() {
 
     return (
         <div className="SignIn_SignUp">
-            <h1>This is  SignUp page</h1>
-            <form onSubmit={(e) => {
+            <Welcome style={{paddingTop: "50px"}} />
+            <div className="sign_nav">
+                <NavLink className="site" to="/SignIn" activeClassName="activeSite">Sign In</NavLink>
+                <NavLink to="/SignUp" activeClassName="activeSite">Sign Up</NavLink>
+            </div>
+            <form style={{minHeight: "250px"}} onSubmit={(e) => {
                 e.preventDefault();
                 SignUpFunc(username, email, password);
                 }}>
-                <input type="text" placeholder="username" value={username} onChange={setUsername}/>
-                <input type="text" placeholder="email" value={email} onChange={setEmail}/>
-                <input type="password" placeholder="password" value={password} onChange={setPassword}/>
-                <button type="submit">SignIn</button>
+                <TextField type="text" label="UserName" value={username} onChange={setUsername}/>
+            
+                <TextField type="text" label="Email" value={email} onChange={setEmail}/>
+                
+                <TextField type="password" label="Password" value={password} onChange={setPassword}/>
+                
+                <Button variant="contained" color="primary" type="submit">SignIn</Button>
             </form>
-            <button onClick={() => signInWithGoogle(users)}>Sign in with google</button>
-            <button onClick={() => signInWithFacebook(users)}>Sign in with facebook</button>
-            <Link to="/SignIn">SignIn</Link>
+            <div className="quick_access">
+                <p>Quick access with</p>
+                <div>
+                    <button className="signIn_with" style={{backgroundImage: "url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBNqj_BACxuoGE7co2RFznug8f_xcjNR0Lng&usqp=CAU)"}} onClick={() => signInWithGoogle(users)}></button>
+                    <button className="signIn_with" style={{backgroundImage: "url(https://pngimg.com/uploads/facebook_logos/facebook_logos_PNG19754.png)"}} onClick={() => signInWithFacebook(users)}></button>
+                </div>
+            </div>
         </div>
     )
 }

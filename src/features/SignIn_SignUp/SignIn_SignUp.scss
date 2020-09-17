@@ -1,0 +1,79 @@
+.SignIn_SignUp{
+    max-width: 800px;
+    min-height: 100vh;
+    margin: 0 auto;
+    text-align: center;
+
+    h1{
+        margin-bottom: 25px;
+    }
+
+    form{
+        margin: 0 auto;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 200px;
+    }
+
+}
+
+.sign_nav{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    
+
+    a{
+        color: grey;
+        flex-grow: 1;
+        padding-bottom: 10px;
+    }
+
+    .activeSite{
+        color: #0099FF;
+        border-bottom: 2px solid #0099FF;
+    }
+}
+
+
+.quick_access{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    p{
+        color: grey;
+        margin-bottom: 10px;
+    }
+    
+    .signIn_with{
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            margin-right: 20px;
+            border-radius: 50%;
+            border: none;
+            background-color: white;
+            background-position: center;
+            background-size: 100%;
+            transition: background-size .2s ease-in-out;
+        }
+
+
+        .signIn_with:last-child{
+            margin: 0;
+            background-size: 120%;
+        }
+
+        .signIn_with:hover{
+            background-size: 110%;
+        }
+
+        .signIn_with:last-child:hover{
+            background-size: 130%;
+        }
+}
+
+

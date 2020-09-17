@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from "react-router-dom";
 
 import "./Main.scss";
 
@@ -9,6 +8,8 @@ import {MessageSelector, updateMessages} from "../Messages/MessagesSlice";
 
 import MessageList from "../Messages/MessageList/MessageList.jsx";
 import MessageAdding from "../Messages/MessageAdding/MessageAdding";
+import Navbar from "../Navbar/Navbar.jsx";
+import Welcome from '../Welcome/Welcome';
 
 export default function Main() {
 
@@ -23,10 +24,13 @@ export default function Main() {
       }, [])
 
     return (
-        <div className="Main">
-            <MessageList messages={messages} />
-            <button onClick={() => auth.signOut()}>LogOut</button>
-            <MessageAdding />
-        </div>
+        <>
+          <Navbar />
+          <div className="Main">
+              <Welcome style={{marginTop: "100px"}}/>
+              <MessageList messages={messages} />
+          </div>
+          <MessageAdding />
+        </>
     )
 }

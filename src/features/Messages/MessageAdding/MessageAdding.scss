@@ -1,0 +1,33 @@
+.MessageAdding{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+
+    form{
+        border-left: 1px solid lightgray;
+        border-right: 1px solid lightgray;
+        background-color: white;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-around;
+    
+        input{
+            border: none;
+            outline: none;
+            background-color: #f2f2f2;
+            line-height: 1.2;
+            padding: 10px;
+            border-radius: 20px;
+            flex-grow: 2;
+            font-size: 16px;
+        }
+
+        svg{
+            color: #0099FF;
+        }
+    }
+}

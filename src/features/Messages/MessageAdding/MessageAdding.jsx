@@ -6,6 +6,9 @@ import AddMessage from "./Functions";
 
 import {CurrentUserSelector} from "../../Users/CurrentUserSlice";
 import useInput from "../../../Hooks/useInput";
+import { IconButton } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
+import PhotoIcon from '@material-ui/icons/Photo';
 
 export default function MessageAdding() {
 
@@ -14,13 +17,22 @@ export default function MessageAdding() {
 
     return (
         <div className="MessageAdding">
-            <form onSubmit={(e) => {
-                e.preventDefault(); 
-                AddMessage(message, resetMessage, currentUser);
-                }}>    
-                <input type="text" placeholder="Type a message..." onChange={handleMessageChange} value={message}/>
-                <button type="submit">Send</button>
-            </form>
+            <div>
+                <form onSubmit={(e) => {
+                    e.preventDefault(); 
+                    AddMessage(message, resetMessage, currentUser.uid);
+                    }}>    
+
+                    <IconButton>
+                        <PhotoIcon />
+                    </IconButton>
+                
+                    <input type="text" autoFocus placeholder="Type a message..." onChange={handleMessageChange} value={message}/>
+                    <IconButton type="submit" aria-label="delete">
+                        <SendIcon />
+                    </IconButton>
+                </form>
+            </div>
         </div>
     )
 }
