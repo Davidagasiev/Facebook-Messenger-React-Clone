@@ -16,6 +16,7 @@ const AddMessage = (message, resetMessage, uid) => {
         })
         .then(function(docRef) {
             resetMessage();
+            window.scrollTo(0, document.body.clientHeight);
         })
         .catch(function(error) {
             alert(error.message);

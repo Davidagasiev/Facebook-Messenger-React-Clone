@@ -5,6 +5,10 @@
     font-family: Helvetica Neue, Segoe UI, Helvetica, Arial, sans-serif;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 a{
     text-decoration: none;
 }
