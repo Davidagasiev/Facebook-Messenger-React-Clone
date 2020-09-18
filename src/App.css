@@ -9,6 +9,10 @@ html{
     scroll-behavior: smooth;
 }
 
+body{
+    padding-right: 0 !important;
+}
+
 a{
     text-decoration: none;
 }
