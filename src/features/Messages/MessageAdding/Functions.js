@@ -12,7 +12,8 @@ const AddMessage = (message, resetMessage, uid, GId) => {
                 minutes: currentDate.getMinutes(),
                 month: currentDate.getMonth(),
                 year: currentDate.getFullYear(),
-                time: currentDate.getTime()
+                time: currentDate.getTime(),
+                day: currentDate.getUTCDate()
             }
         })
         .then(function(docRef) {

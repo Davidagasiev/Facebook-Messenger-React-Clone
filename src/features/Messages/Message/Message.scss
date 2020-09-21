@@ -1,8 +1,7 @@
 .Message{
-    width: 100%;
-    margin: 10px 0;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: end;
 
     .MuiAvatar-root{
         width: 37px;
@@ -11,16 +10,27 @@
         margin-right: 10px;
     }
 
+    button{
+        opacity: 0;
+        margin: 0 10px;
+    }
+
+    &:hover{
+        button{
+            opacity: 1;
+        }
+    }
 }
 
-.Message_text{
-    max-width: 50%;
-    border-radius: 20px;
-    padding: 10px;
+.CUIA{
+    flex-direction: row-reverse;
+}
 
-    span{
-        word-wrap: break-word;
-    }
+.current_user_is_author, .other_user_is_author{
+    width: auto;
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-end;
 }
 
 .current_user_is_author{
@@ -38,5 +48,15 @@
     .Message_text{
     background-color: #F1F0F0;
     color: black;
+    }
+}
+
+.Message_text{
+    max-width: 50%;
+    border-radius: 20px;
+    padding: 10px;
+
+    span{
+        word-wrap: break-word;
     }
 }

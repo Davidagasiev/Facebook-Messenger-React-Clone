@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector } from "react-redux";
 
+import {createDate, deleteMessage} from "./Functions";
 import "./Message.scss";
 import { UsersSelector } from "../../Users/UsersSlice";
 import { CurrentUserSelector } from "../../Users/CurrentUserSlice";
-import { Avatar } from '@material-ui/core';
+import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+
 
 export default function Message(props) {
     const message = props.message;
@@ -23,13 +26,43 @@ export default function Message(props) {
         }
     }, [users])
 
+// For message menu
+
+const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
     return (
-        <div className={`Message ${currentUser.uid === thisUser.uid ? "current_user_is_author" : "other_user_is_author"}`}>
-            {currentUser.uid === thisUser.uid ? "" : <Avatar src={thisUser.photoURL}/>
-            }
-            <div className="Message_text">   
-                <span>{props.message.text}</span>
+        <div className={`Message ${currentUser.uid === thisUser.uid ? "CUIA" : ""}`}>
+            <div className={currentUser.uid === thisUser.uid ? "current_user_is_author" : "other_user_is_author"}>
+                {
+                    currentUser.uid === thisUser.uid ? "" : <Avatar src={thisUser.photoURL}/>
+                }
+                
+                <div className="Message_text" title={createDate(props.message.date)}>   
+                    <span>{props.message.text}</span>
+                </div>
+
             </div>
+            <IconButton onClick={handleClick}>
+                <MoreHorizIcon />
+            </IconButton>
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={() => deleteMessage(props.message.id, handleClose)}>Remove</MenuItem>
+            </Menu>
+
         </div>
     )
 }
