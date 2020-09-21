@@ -17,7 +17,7 @@ function handleUpload(e, setGImage, setChosenFile) {
 
 // To create Group
 
-function createNewGroup(event, GName, GImage, setShowProgress, setProgress) {
+function createNewGroup(event, GName, GImage, setShowProgress, setProgress, resetNewGroupName, setGImage, setChosenFile, handleModalClose) {
     event.preventDefault();
 
     const newGroupId = uuid();
@@ -40,18 +40,23 @@ function createNewGroup(event, GName, GImage, setShowProgress, setProgress) {
             .child(newGroupId)
             .getDownloadURL()
             .then(url => {
+                
                 db.collection("groups").add({
                         GName,
                         GImage: url
                         })
                         .then(function(docRef) {
                             console.log("Document written with ID: ", docRef.id);
+                            setShowProgress(false);
+                            setProgress(0);
+                            resetNewGroupName();
+                            setGImage(null);
+                            setChosenFile("");
+                            handleModalClose();
                         })
                         .catch(function(error) {
                             console.error("Error adding document: ", error);
-                        });
-                        setShowProgress(false);
-                        setProgress(0);
+                        });   
             })
         }
     )

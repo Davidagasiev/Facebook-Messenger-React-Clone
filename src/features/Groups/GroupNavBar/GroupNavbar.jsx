@@ -81,7 +81,7 @@ const classes = useStyles();
 
     const [newGroupName, setNewGroupName, resetNewGroupName] = useInput("");
     const [GImage, setGImage] = useState(null);
-    const [showProgress, setShowProgress] = useToggle(false);
+    const [showProgress, setShowProgress] = useState(false);
     const [progress, setProgress] = useState(0);
     const [chosenFile, setChosenFile] = useState("");
 
@@ -148,7 +148,17 @@ const classes = useStyles();
                                     </Button> :
                                     <Button
                                         onClick={e => {
-                                        createNewGroup(e, newGroupName, GImage, setShowProgress, setProgress)
+                                        createNewGroup(
+                                                e, 
+                                                newGroupName, 
+                                                GImage, 
+                                                setShowProgress, 
+                                                setProgress,
+                                                resetNewGroupName,
+                                                setGImage,
+                                                setChosenFile,
+                                                handleModalClose
+                                            )
                                         }} 
                                         variant="contained"
                                         color="secondary"
