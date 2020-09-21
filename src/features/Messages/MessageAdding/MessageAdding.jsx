@@ -10,17 +10,16 @@ import { IconButton } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import PhotoIcon from '@material-ui/icons/Photo';
 
-export default function MessageAdding() {
+export default function MessageAdding(props) {
 
     const [ message, handleMessageChange, resetMessage ] = useInput("");
     const currentUser = useSelector(CurrentUserSelector);
 
     return (
         <div className="MessageAdding">
-            <div>
                 <form onSubmit={(e) => {
                     e.preventDefault(); 
-                    AddMessage(message, resetMessage, currentUser.uid);
+                    AddMessage(message, resetMessage, currentUser.uid, props.groupId);
                     }}>    
 
                     <IconButton>
@@ -32,7 +31,6 @@ export default function MessageAdding() {
                         <SendIcon />
                     </IconButton>
                 </form>
-            </div>
         </div>
     )
 }

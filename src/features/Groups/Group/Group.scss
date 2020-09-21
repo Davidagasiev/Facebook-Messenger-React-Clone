@@ -1,0 +1,47 @@
+.Group{
+    margin: 5px 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+
+    &:hover{
+        .group_IconButton{
+            opacity: 1;
+        }
+    }
+
+    a{
+        width: 90%;
+    }
+
+}
+
+.activeGroup{
+    background-color: #f2f2f2;
+}
+
+.group_IconButton{
+    opacity: 0;
+}
+
+.group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+
+    p{
+        color: black;
+        font-size: 15px;
+        font-weight: 600;
+        word-wrap: break-word;
+    }
+    span{
+        color: gray;
+        font-size: 14px;
+    }
+
+    div:last-child{
+        margin-left: 15px;
+    }
+}

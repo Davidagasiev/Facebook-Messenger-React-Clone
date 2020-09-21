@@ -32,4 +32,4 @@ function mergeSort(arr){
     return merge(left, right);
 }
 
-export { mergeSort };
+export default mergeSort;

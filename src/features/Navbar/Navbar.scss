@@ -1,28 +1,19 @@
 .Navbar{
-    width: 100%;
-    position: fixed;
-    top: 0;
-
-    .navbar{
+        position: fixed;
+        top: 0;
         background-color:white;
-        max-width: 800px;
-        margin: 0 auto;
-        border: 1px solid lightgrey;
-        border-top: none;
+        width: 75%;
+        border-bottom: 1px solid lightgrey;
         display: flex;
         justify-content: space-between;
         padding: 7px;
-    }
 
     .leftBar{
         display: flex;
         flex-direction: row;
         align-items: center;
         padding-left: 13px;
-        img{
-            cursor: pointer;
-        }
-
+        
         span{
             margin-left: 10px;
             font-weight: bold;

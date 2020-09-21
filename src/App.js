@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import { auth, db } from "./app/firebase";
 
-import {setCurrentUser} from "./features/Users/CurrentUserSlice";
+import {setCurrentUser, CurrentUserSelector} from "./features/Users/CurrentUserSlice";
 import {updateUsers} from "./features/Users/UsersSlice";
 
 import SignIn from "./features/SignIn_SignUp/SignIn/SignIn.jsx";
@@ -22,7 +22,11 @@ function App(props) {
         //If User Logged In...
         const {displayName, email, uid, photoURL} = authUser;
         dispatch(setCurrentUser({displayName, email, uid, photoURL}));
-        props.history.push("/");
+
+        if(props.location.pathname === "/SignUp" || props.location.pathname === "/SignIn"){
+          props.history.push("/Groups/12");
+        }
+
       }else{
         //If User Logges Out...
         dispatch(setCurrentUser(null));
@@ -37,6 +41,7 @@ function App(props) {
     }
   }, [ dispatch ])
 
+  const currentUser = useSelector(CurrentUserSelector);
 
   useEffect(() =>{
     //This is how to get info from firebase
@@ -46,13 +51,19 @@ function App(props) {
   }, [])
 
 
+
   return (
     <div className="App">
 
         <Switch>
-          <Route exact path="/" component={Main}/>
-          <Route exact path="/SignIn" component={SignIn}/>
+          { currentUser ? 
+          <Route exact path="/Groups/:GroupId" component={(RouteProps) => <Main {...RouteProps} />}/>
+            :
+          <>
+          <Route exact path="/SignIn" component={SignIn}/> 
           <Route exact path="/SignUp" component={SignUp}/>
+          </>
+          }
         </Switch>
 
     </div>

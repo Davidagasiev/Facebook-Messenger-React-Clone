@@ -1,0 +1,71 @@
+.GroupNavbar{
+    position: fixed;
+    top: 0;
+    background-color:white;
+    width: 25%;
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px;
+
+    div:first-child{
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+
+        h2{
+            margin-left: 10px;
+        }
+    }
+
+    button{
+        padding: 8.5px;
+
+        svg{
+            height: 25px;
+            width: 25px;
+        }
+
+    }
+
+    
+}
+
+    .userAuth{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .MuiFormControl-root input{
+            margin-top: 7px;
+            margin-bottom: 3px;
+        }
+
+        .MuiFormControl-root{
+            margin-bottom: 10px;
+        }
+
+        button, label{
+            width: 100%;
+            margin: 10px 0;
+        }
+        label:first-child{
+            width: auto;
+        }
+    }
+
+    .fileInput{
+        display: none;
+    }
+
+    .chosenPhoto{
+        background-size: cover;
+        background-position: 50% 50%;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        width: 100px;
+        height: 100px;
+        box-shadow: 2px 2px 7px 1px #9B9B9B;
+    }

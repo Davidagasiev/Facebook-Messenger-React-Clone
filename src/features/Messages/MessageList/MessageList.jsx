@@ -2,7 +2,7 @@ import React from 'react'
 
 import Message from '../Message/Message.jsx'
 import "./MessageList.scss";
-import { mergeSort } from "./Functions";
+import mergeSort from "../../../Hooks/MergeSort";
 
 
 export default function MessageList(props) {
@@ -12,7 +12,8 @@ export default function MessageList(props) {
     return (
         <>
         <div className="MessageList">
-            {messages.map(message => (
+            {
+                messages.map(message => (
                 <Message key={message.id} message={message}/>
             ))
             }

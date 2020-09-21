@@ -1,14 +1,11 @@
 .MessageAdding{
-    width: 100%;
     position: fixed;
     bottom: 0;
+    width: 75%;
 
     form{
-        border-left: 1px solid lightgray;
-        border-right: 1px solid lightgray;
         background-color: white;
         margin: 0 auto;
-        max-width: 800px;
         padding: 10px;
         display: flex;
         flex-direction: row;

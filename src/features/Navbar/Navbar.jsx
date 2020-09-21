@@ -1,56 +1,38 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {useSelector} from "react-redux";
-import { Avatar, Divider, IconButton, Menu, MenuItem} from '@material-ui/core';
+import { Avatar, IconButton} from '@material-ui/core';
 
 import {CurrentUserSelector} from "../Users/CurrentUserSlice";
 
 import "./Navbar.scss";
 import { auth } from '../../app/firebase';
-import { UsersSelector } from '../Users/UsersSlice';
+import { GroupsSelector } from '../Groups/GroupsSlice';
 
-export default function Navbar() {
-
-    const users = useSelector(UsersSelector);
-    const curUser = useSelector(CurrentUserSelector);
-
-    const [currentUser, setCurrentUser] = useState({});
-
-    useEffect(() => {
-        if(users.length !== 0 && curUser !== null){
-            setCurrentUser(users.find(user => user.uid === curUser.uid))
-        }
-    }, [users, curUser])
+export default function Navbar(props) {
 
     
-// For User Menu
+    const groups = useSelector(GroupsSelector);
+    const [curGroup, setCurGroup] = useState({});
 
-const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+    useEffect(() => {
+        if(groups.length !== 0) {
+            setCurGroup(groups.find(group => group.id === props.groupId));
+        }
+    }, [groups])
 
     return (
-        <div className="Navbar">
-            <div className="navbar">
+            <div className="Navbar">
                 <div className="leftBar">
-                    <Avatar src={currentUser.photoURL} onClick={handleClick}/>
-                        <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onClick={handleClose}>Settings</MenuItem>
-                            <Divider />
-                            <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
-                        </Menu>
-                    <span>{currentUser.displayName}</span>
+                    <Avatar src={curGroup.GImage}/>
+                    <span>{
+                        curGroup.GName ? 
+                            curGroup.GName.length > 30 ?
+                                curGroup.GName.slice(0, 30) + "..."
+                                :
+                                curGroup.GName
+                            :
+                            "..."
+                        }</span>
                 </div>
                 <div className="rightBar">
                     <IconButton style={{padding: "5px"}}>
@@ -58,6 +40,5 @@ const [anchorEl, setAnchorEl] = useState(null);
                     </IconButton>
                 </div>
             </div>
-        </div>
     )
 }
