@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import { Avatar, IconButton } from '@material-ui/core';
+import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import "./Group.scss";
+import { DeleteGroup } from "./Functions";
 import { useSelector } from 'react-redux';
 import { MessageSelector } from '../../Messages/MessagesSlice';
 import MergeSort from "../../../Hooks/MergeSort";
@@ -14,6 +15,19 @@ export default function Group(props) {
     const messages = useSelector(MessageSelector);
 
     const lastMessage = MergeSort(messages.filter(message => message.GId === props.id));
+    
+// Fro Group menu
+
+const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+    
     return (
         <div className={`Group ${props.id === props.groupId ? "activeGroup" : "" }`}>
             <Link to={`/Groups/${props.id}`}>
@@ -36,9 +50,23 @@ export default function Group(props) {
                 </div>
             </Link>
             <div className="group_IconButton">
-                <IconButton>
+                <IconButton onClick={handleClick}>
                     <MoreHorizIcon />
                 </IconButton>
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <MenuItem onClick={() => { 
+                            DeleteGroup(
+                                messages.filter(message => message.GId === props.id),
+                                props.groupId,
+                                handleClose)
+                        }}>Delete Group</MenuItem>
+                </Menu>
             </div>
         </div>
     )
