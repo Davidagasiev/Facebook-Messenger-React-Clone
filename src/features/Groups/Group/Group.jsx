@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom';
 
 import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core';
@@ -27,6 +27,13 @@ const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+      if(props.id === props.groupId){
+          console.log(props.id);
+          console.log(props.groupId)
+      }
+  })
     
     return (
         <div className={`Group ${props.id === props.groupId ? "activeGroup" : "" }`}>
@@ -67,7 +74,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                     <MenuItem onClick={() => { 
                             DeleteGroup(
                                 messages.filter(message => message.GId === props.id),
-                                props.groupId,
+                                props.id,
                                 handleClose)
                         }}>Delete Group</MenuItem>
                 </Menu>
