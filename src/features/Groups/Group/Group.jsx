@@ -42,7 +42,11 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                                 }</p>
                         <span>{
                             lastMessage.length > 0 ? 
-                            lastMessage[lastMessage.length - 1].text
+
+                                lastMessage[lastMessage.length - 1].text.length > 20 ?
+                                    `${lastMessage[lastMessage.length - 1].text.slice(0, 20)}...`
+                                    :
+                                    lastMessage[lastMessage.length - 1].text
                             :
                             "No Messages"
                             }</span>
