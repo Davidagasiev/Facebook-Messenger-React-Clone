@@ -1,0 +1,48 @@
+.GroupInfo{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label{
+        cursor: pointer;
+
+        p{
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg{
+            color: #0099FF;
+        }
+    }
+
+    .groupImg{
+        width: 120px;
+        height: 120px;
+        background-position: 50%;
+        background-size: cover;
+        border-radius: 50%;
+    }
+
+    .GNameChange{
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .MuiInputBase-multiline{
+            padding: 10px;
+        }
+
+        textarea{
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            padding: 0px;
+        }
+    }
+
+}
