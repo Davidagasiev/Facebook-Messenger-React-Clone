@@ -6,10 +6,24 @@ import "./Welcome.scss";
 export default function Welcome(props) {
     return (
         <div style={props.style} className="Welcome">
-            <img src={Logo} alt="Messenger Logo"/>
 
-            <h1>Welcome to Facebook Messenger Clone</h1>
-            <h3>Made by David Agasiev</h3>
+            {props.type === "group" ? 
+                <div className="group">
+                    <div className="img" style={{backgroundImage: `url(${props.src})`}}/>
+                    
+                        <h1>{props.h1}</h1>
+                    
+                </div>
+                : 
+                    <>
+                        <img src={props.type === "group" ? props.src : Logo} alt="Messenger Logo"/>
+                        <h1>{props.h1}</h1>
+                        <h3>{props.h3}</h3>
+                    </>
+            }
+
+            
+            
         </div>
     )
 }

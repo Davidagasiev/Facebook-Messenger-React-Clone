@@ -10,6 +10,7 @@ import Welcome from '../Welcome/Welcome';
 
 import { IconButton } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { GroupsSelector } from '../Groups/GroupsSlice';
 
 export default function Chat(props) {
 // For Got To bottom button. 
@@ -33,6 +34,14 @@ export default function Chat(props) {
       //   }
       // })
 
+    const groups = useSelector(GroupsSelector);
+    const [curGroup, setCurGroup] = useState({});
+
+    useEffect(() => {
+        if(groups.length !== 0) {
+            setCurGroup(groups.find(group => group.id === props.groupId));
+        }
+    }, [groups])
 
     return (
       <>
@@ -51,12 +60,12 @@ export default function Chat(props) {
               { props.isGroup ? 
                 <>
                   <div className="chat">
-                      <Welcome style={{marginTop: "100px"}}/>
+                      <Welcome type="group" h1={curGroup.GName} src={curGroup.GImage} style={{marginTop: "100px"}}/>
                       <MessageList messages={props.messages} />
                   </div>
                   
                   <Navbar groupId={props.groupId}/>
-                  </>
+                </>
                 : ""
               }
             <MessageAdding isGroup={props.isGroup} groupId={props.groupId}/>

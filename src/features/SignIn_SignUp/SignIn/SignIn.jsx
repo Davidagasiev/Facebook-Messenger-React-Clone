@@ -22,7 +22,10 @@ export default function SignIn() {
     
     return (
         <div className="SignIn_SignUp">
-            <Welcome style={{paddingTop: "50px"}} />
+            <Welcome 
+                h1="Welcome to Facebook Messenger Clone" 
+                h3="Made by David Agasiev" 
+                style={{paddingTop: "50px"}} />
             <div className="sign_nav">
                 <NavLink className="site" to="/SignIn" activeClassName="activeSite">Sign In</NavLink>
                 <NavLink to="/SignUp" activeClassName="activeSite">Sign Up</NavLink>
