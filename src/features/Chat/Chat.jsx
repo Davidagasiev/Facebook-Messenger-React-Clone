@@ -11,7 +11,7 @@ import Welcome from '../Welcome/Welcome';
 import { IconButton } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
-export default function Main(props) {
+export default function Chat(props) {
 // For Got To bottom button. 
       // const [showToBottom, setShowToButton] = useState(true);
       // const main = document.getElementsByClassName("main")[0];
@@ -48,14 +48,18 @@ export default function Main(props) {
               } */}
               
           <div className="Chat">
-            
-            <div className="chat">
-                <Welcome style={{marginTop: "100px"}}/>
-                <MessageList messages={props.messages} />
-            </div>
-            
-            <Navbar groupId={props.groupId}/>
-            <MessageAdding groupId={props.groupId}/>
+              { props.isGroup ? 
+                <>
+                  <div className="chat">
+                      <Welcome style={{marginTop: "100px"}}/>
+                      <MessageList messages={props.messages} />
+                  </div>
+                  
+                  <Navbar groupId={props.groupId}/>
+                  </>
+                : ""
+              }
+            <MessageAdding isGroup={props.isGroup} groupId={props.groupId}/>
           </div>
       </>
     )

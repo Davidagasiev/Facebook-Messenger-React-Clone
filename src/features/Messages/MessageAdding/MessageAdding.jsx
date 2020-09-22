@@ -22,14 +22,30 @@ export default function MessageAdding(props) {
                     AddMessage(message, resetMessage, currentUser.uid, props.groupId);
                     }}>    
 
-                    <IconButton>
+                    { props.isGroup ?
+                    <IconButton type="submit">
                         <PhotoIcon />
                     </IconButton>
-                
+                        :
+                    <div className="messagingDisabled">
+                        <IconButton disabled>
+                            <PhotoIcon />
+                        </IconButton>
+                    </div>
+                    }
+
                     <input type="text" autoFocus placeholder="Type a message..." onChange={handleMessageChange} value={message}/>
-                    <IconButton type="submit" aria-label="delete">
+                    { props.isGroup ?
+                    <IconButton type="submit">
                         <SendIcon />
                     </IconButton>
+                        :
+                    <div className="messagingDisabled">
+                        <IconButton type="submit" disabled>
+                            <SendIcon />
+                        </IconButton>
+                    </div>
+                    }
                 </form>
         </div>
     )

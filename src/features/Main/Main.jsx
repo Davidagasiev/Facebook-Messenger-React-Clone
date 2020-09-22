@@ -27,11 +27,15 @@ export default function Main(props) {
 
     const groupId = props.match.params.GroupId;
     const groupMessages = messages.filter(message => message.GId === groupId);
+    const groups = useSelector(GroupsSelector);
 
   return (
     <div className="Main">
         <Groups groupId={groupId}/>
-        <Chat groupId={groupId} messages={groupMessages}/>
+        <Chat 
+          groupId={groupId} 
+          messages={groupMessages} 
+          isGroup={groups.find(group => group.id === groupId) === undefined ? false : true}/>
     </div>
   )
 }
