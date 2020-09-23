@@ -22,7 +22,17 @@ export default function MessageAdding(props) {
     const [sendDisabled, setSendDisabled] = useState(false);
 
     return (
-        <div className="MessageAdding">
+        <div 
+            className="MessageAdding" 
+            style={{borderTop: chosenFile !== "" ? "1px solid lightgrey": "none"}}>
+        
+        
+        {chosenFile !== "" ?       
+            <div className="chosenFile" style={{backgroundImage: `url(${chosenFile})`}}>
+            </div>
+            :
+            ""
+        }
                 <form onSubmit={(e) => {
                     e.preventDefault(); 
                     if(chosenFile === ""){

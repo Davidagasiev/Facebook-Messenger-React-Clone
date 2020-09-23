@@ -2,6 +2,7 @@
     position: fixed;
     bottom: 0;
     width: 75%;
+    background-color: white;
 
     form{
         background-color: white;
@@ -46,6 +47,15 @@
     button, div{
        svg{
         color: #A4AAB3;
-    } 
+        } 
     }
+}
+
+.chosenFile{
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    background-position: 50%;
+    background-size: cover;
 }
