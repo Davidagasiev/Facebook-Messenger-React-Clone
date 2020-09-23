@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useSelector } from 'react-redux';
 
 import { GroupsSelector } from '../GroupsSlice';
+import GroupImages from "./GroupImages/GroupImages.jsx";
 
 import { TextField, Button } from "@material-ui/core";
 import PhotoIcon from '@material-ui/icons/Photo';
@@ -59,6 +60,9 @@ export default function GroupInfo(props) {
                     : ""
                 }
             </div>
+
+            <GroupImages groupId={props.groupId}/>
+
         </div>
     )
 }
