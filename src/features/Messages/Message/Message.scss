@@ -51,7 +51,7 @@
     }
 }
 
-.Message_text{
+.Message_text, .Message_Image{
     max-width: 100%;
     border-radius: 20px;
     padding: 10px;
@@ -59,4 +59,9 @@
     span{
         word-wrap: break-word;
     }
+}
+
+.Message_Image{
+    padding: 0;
+    border: 1px solid lightgray;
 }

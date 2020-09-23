@@ -44,11 +44,15 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                 {
                     currentUser.uid === thisUser.uid ? "" : <Avatar src={thisUser.photoURL}/>
                 }
-                
-                <div className="Message_text" title={createDate(props.message.date)}>   
-                    <span>{props.message.text}</span>
-                </div>
 
+                {props.message.type !== "photo" ?
+                <div className="Message_text" title={createDate(props.message.date)}>
+                        <span>{props.message.text}</span>
+                        
+                </div>
+                    :
+                <img alt="Message" className="Message_Image" src={props.message.photo}/>
+                }
             </div>
             <IconButton onClick={handleClick}>
                 <MoreHorizIcon />

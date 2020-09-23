@@ -22,16 +22,30 @@
             font-size: 16px;
         }
 
+        label{
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+
+            &:hover{
+                background-color: #F5F5F5;
+            }
+        }
+
+        .fileInput{
+            display: none;
+        }
+
         svg{
             color: #0099FF;
         }
     }
 }
 
-.messagingDisabled{
-    button{    
-        svg{
-            color: #A4AAB3;
-        }
+.messagingDisabled{ 
+    button, div{
+       svg{
+        color: #A4AAB3;
+    } 
     }
 }

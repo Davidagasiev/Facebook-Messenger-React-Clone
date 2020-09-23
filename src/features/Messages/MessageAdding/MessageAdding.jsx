@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from "react-redux";
 
 import "./MessageAdding.scss";
-import AddMessage from "./Functions";
+import {AddMessage, handlePhotoChange, AddPhotoMessage} from "./Functions";
 
 import {CurrentUserSelector} from "../../Users/CurrentUserSlice";
 import useInput from "../../../Hooks/useInput";
@@ -15,27 +15,50 @@ export default function MessageAdding(props) {
     const [ message, handleMessageChange, resetMessage ] = useInput("");
     const currentUser = useSelector(CurrentUserSelector);
 
+// For photo message
+
+    const [upload, setUpload] = useState(null);
+    const [chosenFile, setChosenFile] = useState("");
+    const [sendDisabled, setSendDisabled] = useState(false);
+
     return (
         <div className="MessageAdding">
                 <form onSubmit={(e) => {
                     e.preventDefault(); 
-                    AddMessage(message, resetMessage, currentUser.uid, props.groupId);
+                    if(chosenFile === ""){
+                        AddMessage(message, resetMessage, currentUser.uid, props.groupId);
+                    }
+                    else{
+                        AddPhotoMessage(upload, setUpload, setChosenFile, currentUser.uid, props.groupId, setSendDisabled);
+                    }
                     }}>    
 
+                    <input
+                        accept="image/*"
+                        id="photoMessage"
+                        className="fileInput"
+                        type="file"
+                        onChange={(e) => {
+                            handlePhotoChange(e, setUpload, setChosenFile);
+                        }}
+                    />
+    
                     { props.isGroup ?
-                    <IconButton type="submit">
-                        <PhotoIcon />
-                    </IconButton>
-                        :
-                    <div className="messagingDisabled">
-                        <IconButton disabled>
+                        
+                        <label  htmlFor="photoMessage">
                             <PhotoIcon />
-                        </IconButton>
-                    </div>
+                        </label>
+                        
+                        :
+                        <div style={{padding: "12px"}} className="messagingDisabled">
+                            <div>
+                                <PhotoIcon /> 
+                            </div>
+                        </div>
                     }
 
                     <input type="text" autoFocus placeholder="Type a message..." onChange={handleMessageChange} value={message}/>
-                    { props.isGroup ?
+                    { props.isGroup && !sendDisabled ?
                     <IconButton type="submit">
                         <SendIcon />
                     </IconButton>

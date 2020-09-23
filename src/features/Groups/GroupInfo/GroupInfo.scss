@@ -6,16 +6,14 @@
 
     label{
         cursor: pointer;
-
+        color: #0099FF;
+        
         p{
             margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        svg{
-            color: #0099FF;
+            font-weight: 600;
         }
     }
 
