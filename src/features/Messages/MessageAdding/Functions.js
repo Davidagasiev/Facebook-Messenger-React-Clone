@@ -119,6 +119,7 @@ export const AddFileMessage = (upload, setUpload, uid, GId, setSendDisabled) => 
                     db.collection("messages").add({
                         type: "file",
                         file: url,
+                        fileName: upload.name,
                         uid,
                         GId,
                         date: {

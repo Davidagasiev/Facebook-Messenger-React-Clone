@@ -48,6 +48,9 @@
     .Message_text{
     background-color: #F1F0F0;
     color: black;
+        a{
+            color: black;
+        }
     }
 }
 
@@ -56,9 +59,22 @@
     border-radius: 20px;
     padding: 10px;
 
+    .fileMessage{
+        display: flex;
+        flex-direction: column;
+        color: white;   
+        text-align: center;
+        span{
+            word-wrap: break-word;
+        }
+        p{
+            margin-top: 5px;
+        }
+    }
     span{
         word-wrap: break-word;
     }
+    
 }
 
 .Message_Image{

@@ -7,7 +7,7 @@ import { UsersSelector } from "../../Users/UsersSlice";
 import { CurrentUserSelector } from "../../Users/CurrentUserSlice";
 import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 export default function Message(props) {
     const message = props.message;
@@ -47,8 +47,16 @@ const [anchorEl, setAnchorEl] = React.useState(null);
 
                 {props.message.type !== "photo" ?
                 <div className="Message_text" title={createDate(props.message.date)}>
+                    {props.message.type === "file" ?
+                        <a className="fileMessage" href={props.message.file} target="_blank">
+                            <span>
+                                {props.message.fileName}
+                            </span>
+                            <p><SystemUpdateAltIcon /></p>
+                        </a>
+                        :
                         <span>{props.message.text}</span>
-                        
+                    }  
                 </div>
                     :
                 <img alt="Message" className="Message_Image" src={props.message.photo}/>
