@@ -11,10 +11,15 @@ import SendIcon from '@material-ui/icons/Send';
 import PhotoIcon from '@material-ui/icons/Photo';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import DescriptionIcon from '@material-ui/icons/Description';
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import Popover from '@material-ui/core/Popover';
+
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 export default function MessageAdding(props) {
 
-    const [ message, handleMessageChange, resetMessage ] = useInput("");
+    const [ message, handleMessageChange ] = useState("");
     const currentUser = useSelector(CurrentUserSelector);
 
 // For photo message
@@ -26,6 +31,21 @@ export default function MessageAdding(props) {
 // For file message
 
 const [uploadFile, setUploadFile] = useState(null);
+
+// For Emoji
+
+const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
     return (
         <div 
@@ -69,7 +89,7 @@ const [uploadFile, setUploadFile] = useState(null);
                     else if(uploadFile !== null){
                         AddFileMessage(uploadFile, setUploadFile, currentUser.uid, props.groupId, setSendDisabled);
                     }else if(chosenFile === "" && uploadFile === null){
-                        AddMessage(message, resetMessage, currentUser.uid, props.groupId);
+                        AddMessage(message, handleMessageChange, currentUser.uid, props.groupId);
                     }
                     }}>    
 {/* For file  */}
@@ -124,7 +144,38 @@ const [uploadFile, setUploadFile] = useState(null);
                     }
 {/* For Image  */}
 
-                    <input type="text" autoFocus placeholder="Type a message..." onChange={handleMessageChange} value={message}/>
+                    <input type="text" autoFocus placeholder="Type a message..." onChange={e => handleMessageChange(e.target.value)} value={message}/>
+                    
+                    { props.isGroup ?
+                        
+                        <div onClick={handleClick}>
+                            <EmojiEmotionsIcon/>
+                            
+                        </div>
+                        
+                        :
+                        <div style={{padding: "12px"}} className="messagingDisabled">
+                            <div>
+                                <EmojiEmotionsIcon /> 
+                            </div>
+                        </div>
+                    }
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                                }}
+                                transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                                }}
+                            >
+                                <Picker onSelect={emoji => handleMessageChange(message + emoji.native)} />
+                            </Popover>
                     { props.isGroup && !sendDisabled ?
                     <IconButton type="submit">
                         <SendIcon />

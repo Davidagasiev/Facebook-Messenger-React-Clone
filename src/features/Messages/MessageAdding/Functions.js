@@ -21,7 +21,7 @@ export const AddMessage = (message, resetMessage, uid, GId) => {
         .then(function(docRef) {
             const chat = document.getElementsByClassName("chat")[0];
             chat.scrollTo(0, chat.scrollHeight);
-            resetMessage();
+            resetMessage("");
         })
         .catch(function(error) {
             alert(error.message);
