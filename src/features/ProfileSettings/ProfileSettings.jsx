@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { MenuItem } from '@material-ui/core';
+import { Button, MenuItem, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
-import {changeUserImage} from "./Functions";
+import useInput from "../../Hooks/useInput";
+import {changeUserImage, changeUserName} from "./Functions";
 import "./ProfileSettings.scss";
 
 
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
+    
   },
 }));
 
@@ -42,7 +44,14 @@ export default function ProfileSettings(props) {
       setOpen(false);
     };
     
-// For Profile Image
+// For UserName Changing
+
+  const [userName, setUserName] = useState(props.displayName);
+  useEffect(() => {
+    if(props.displayName){
+      setUserName(props.displayName)
+    }
+  }, [props.displayName])
 
     return (
         <div className="ProfileSettings">
@@ -81,7 +90,29 @@ export default function ProfileSettings(props) {
                           <div style={{backgroundImage: `url(${props.photoURL})`}}></div>
                           <p>Change</p>
                         </label>
-                    
+
+                        <form className="DisplayName_Form" onSubmit={(e) => changeUserName(e, props.uid, userName, props.photoURL)}>
+                          <TextField 
+                            label="UserName" 
+                            value={userName} 
+                            onChange={(e) => setUserName(e.target.value)} />
+                          { userName === "" ?
+                            <Button 
+                                disabled
+                                type="submit" 
+                                variant="contained" 
+                                color="primary"
+                                >Submit
+                            </Button>
+                          :
+                            <Button 
+                                type="submit" 
+                                variant="contained" 
+                                color="primary"
+                                >Submit
+                            </Button>
+                          }
+                        </form>
                 </div>
                 </Fade>
             </Modal>

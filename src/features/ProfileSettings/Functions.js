@@ -2,11 +2,18 @@ import {db, storage} from "../../app/firebase";
 import {v4 as uuid} from "uuid"
 
 
-export function changeUserName( uid, displayName, photoURL) {
+export function changeUserName(e, uid, displayName, photoURL) {
+    e.preventDefault();
     db.collection("users").doc(uid).set({
         uid,
         displayName,
         photoURL
+    })
+    .then(() => {
+        alert("Your UserName Was successfully.");
+    })
+    .catch(error => {
+        alert(error.message);
     })
 }
 
