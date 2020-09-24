@@ -1,0 +1,35 @@
+
+.ProfileSettings{
+    input[file]{
+        display: none;
+    }
+}
+
+.PUrlInput{
+    display: none;
+}
+
+.ProfileAvatar{
+    cursor: pointer;
+    text-align: center;
+    div{
+        margin: 20px;
+        margin-bottom: 10px;
+        width: 150px;
+        height: 150px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        opacity: 1;
+        transition: all .2s ease-in-out;
+
+        &:hover{
+            opacity: .8;
+        }
+    }
+
+    p{
+        color: #0099ff;
+    }
+    
+}

@@ -12,11 +12,11 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import {CurrentUserSelector} from "../../Users/CurrentUserSlice";
 import useInput from "../../../Hooks/useInput";
-import useToggle from "../../../Hooks/useToggle";
 import { auth } from '../../../app/firebase';
 import { UsersSelector } from '../../Users/UsersSlice';
 import { handleUpload, createNewGroup } from "./Functions";
 import "./GroupNavbar.scss";
+import ProfileSettings from '../../ProfileSettings/ProfileSettings';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -132,42 +132,42 @@ const classes = useStyles();
                             </Button>
                         </label>
                             
-                                {GImage ? 
-                                    <div className="chosenPhoto" style={{backgroundImage: `url(${chosenFile})`}}></div> : ""
-                                }
-                                    {showProgress ? <CircularProgress variant="static" value={progress} /> : ""}
-                                {   chosenFile === "" ?
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        className={classes.button}
-                                        startIcon={<AddCircleIcon />}
-                                        disabled
-                                            >
-                                                Create Group
-                                    </Button> :
-                                    <Button
-                                        onClick={e => {
-                                        createNewGroup(
-                                                e, 
-                                                newGroupName, 
-                                                GImage, 
-                                                setShowProgress, 
-                                                setProgress,
-                                                resetNewGroupName,
-                                                setGImage,
-                                                setChosenFile,
-                                                handleModalClose
-                                            )
-                                        }} 
-                                        variant="contained"
-                                        color="secondary"
-                                        className={classes.button}
-                                        startIcon={<AddCircleIcon />}
-                                            >
-                                                Create Group
-                                    </Button>
-                                }  
+                        {GImage ? 
+                            <div className="chosenPhoto" style={{backgroundImage: `url(${chosenFile})`}}></div> : ""
+                        }
+                        {showProgress ? <CircularProgress variant="static" value={progress} /> : ""}
+                        {   chosenFile === "" ?
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                className={classes.button}
+                                startIcon={<AddCircleIcon />}
+                                disabled
+                            >
+                                Create Group
+                            </Button> :
+                            <Button
+                                onClick={e => {
+                                createNewGroup(
+                                    e, 
+                                    newGroupName, 
+                                    GImage, 
+                                    setShowProgress, 
+                                    setProgress,
+                                    resetNewGroupName,
+                                    setGImage,
+                                    setChosenFile,
+                                    handleModalClose
+                                )
+                            }} 
+                                variant="contained"
+                                color="secondary"
+                                className={classes.button}
+                                startIcon={<AddCircleIcon />}
+                            >
+                                Create Group
+                            </Button>
+                            }  
         {/* Choosing group Photo */}
                     </div>
                     </div>
@@ -184,7 +184,7 @@ const classes = useStyles();
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Settings</MenuItem>
+                        <ProfileSettings {...currentUser} handleClose={handleClose}/>
                         <Divider />
                         <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
                     </Menu>

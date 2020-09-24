@@ -28,13 +28,6 @@ const [anchorEl, setAnchorEl] = React.useState(null);
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-      if(props.id === props.groupId){
-          console.log(props.id);
-          console.log(props.groupId)
-      }
-  })
-    
     return (
         <div className={`Group ${props.id === props.groupId ? "activeGroup" : "" }`}>
             <Link to={`/Groups/${props.id}`}>
