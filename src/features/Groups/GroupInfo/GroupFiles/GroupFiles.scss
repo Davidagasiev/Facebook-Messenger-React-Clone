@@ -1,0 +1,27 @@
+.GroupFiles{
+    width: 100%;
+    text-align: center;
+    color: gray;
+    font-weight: 600;
+    margin-bottom: 10px;;
+        
+    .Files{
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+
+        .file{
+            width: 100%;
+            text-align: left;
+            color: #0099FF;
+            padding: 10px;
+            font-size: 14px;
+            max-width: 310px;
+
+            &:hover{
+                background-color: lightgray;
+            }
+        }
+    }
+
+}
