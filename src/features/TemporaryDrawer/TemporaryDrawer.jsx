@@ -26,7 +26,7 @@ export default function TemporaryDrawer(props) {
 
   return (
     <div>
-        <IconButton style={props.style} onClick={toggleDrawer('right', true)}>
+        <IconButton title={props.buttonTitle} style={props.style} onClick={toggleDrawer('right', true)}>
             {props.children}
         </IconButton>
         <Drawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)}>

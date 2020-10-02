@@ -92,7 +92,7 @@ export default function ProfileSettings(props) {
                         </label>
 
                         <form className="DisplayName_Form" onSubmit={(e) => changeUserName(e, props.uid, userName, props.photoURL)}>
-                          <TextField 
+                          <TextField
                             label="UserName" 
                             value={userName} 
                             onChange={(e) => setUserName(e.target.value)} />

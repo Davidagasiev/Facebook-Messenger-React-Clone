@@ -105,7 +105,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
     
                     { props.isGroup ?
                         
-                        <label  htmlFor="fileMessage">
+                        <label title="Send A File" htmlFor="fileMessage">
                             <InsertDriveFileIcon />
                         </label>
                         
@@ -131,7 +131,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
     
                     { props.isGroup ?
                         
-                        <label  htmlFor="photoMessage">
+                        <label title="Send A Photo" htmlFor="photoMessage">
                             <PhotoIcon />
                         </label>
                         
@@ -148,9 +148,8 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                     
                     { props.isGroup ?
                         
-                        <div onClick={handleClick}>
+                        <div title="Send An Emoji" onClick={handleClick}>
                             <EmojiEmotionsIcon/>
-                            
                         </div>
                         
                         :
@@ -177,12 +176,12 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                                 <Picker onSelect={emoji => handleMessageChange(message + emoji.native)} />
                             </Popover>
                     { props.isGroup && !sendDisabled ?
-                    <IconButton type="submit">
+                    <IconButton title="Send A Message" type="submit">
                         <SendIcon />
                     </IconButton>
                         :
                     <div className="messagingDisabled">
-                        <IconButton type="submit" disabled>
+                        <IconButton title="Send A Message" type="submit" disabled>
                             <SendIcon />
                         </IconButton>
                     </div>

@@ -46,7 +46,16 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                 }
 
                 <div className="MessageFlex">
-                    <span className="MessageUserName">{thisUser.displayName}</span>
+
+                    <span className="MessageUserName">{thisUser.displayName ?
+                                                            thisUser.displayName.length > 40 ?
+                                                                thisUser.displayName.slice(0, 40) + "..."
+                                                            :
+                                                                thisUser.displayName
+                                                        :
+                                                            ""   
+                                                        }</span>
+
                         {props.message.type !== "photo" ?
                         <div className="Message_text" title={createDate(props.message.date)}>
                             {props.message.type === "file" ?

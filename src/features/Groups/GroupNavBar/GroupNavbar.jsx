@@ -96,7 +96,7 @@ const classes = useStyles();
 
             <div>
             
-                <IconButton onClick={handleOpen}>
+                <IconButton title="Create Group" onClick={handleOpen}>
                     <AddIcon />
                 </IconButton>
                 <Modal
@@ -174,7 +174,7 @@ const classes = useStyles();
                     </Fade>
                 </Modal>
 
-                <IconButton onClick={handleClick}>
+                <IconButton title="Settings" onClick={handleClick}>
                     <SettingsIcon />
                 </IconButton>
                     <Menu

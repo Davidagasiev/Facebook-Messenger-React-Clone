@@ -36,6 +36,7 @@ export default function Navbar(props) {
                 </div>
                 <div className="rightBar">
                     <TemporaryDrawer 
+                        buttonTitle="Conversation Information"
                         component={GroupInfo} 
                         componentProps={{groupId: props.groupId}} 
                         style={{padding: "5px"}}>

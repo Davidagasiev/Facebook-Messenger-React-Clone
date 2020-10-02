@@ -82,14 +82,14 @@
         color: white;   
         text-align: center;
         span{
-            word-wrap: break-word;
+            word-break: break-all;
         }
         p{
             margin-top: 5px;
         }
     }
     span{
-        word-wrap: break-word;
+        word-break: break-all;
     }
     
 }

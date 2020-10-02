@@ -28,7 +28,7 @@ export default function GroupInfo(props) {
                             type="file"
                             onChange={(e) => changeGImage(e, props.groupId, group.GName)}
                         />
-            <label htmlFor="fileButton">
+            <label title="Click To Change The Image" htmlFor="fileButton">
                 <div 
                     className="groupImg" 
                     style={{backgroundImage: `url(${group.GImage})`}}
