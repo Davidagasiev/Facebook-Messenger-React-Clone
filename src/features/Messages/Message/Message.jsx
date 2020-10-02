@@ -45,22 +45,25 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                     currentUser.uid === thisUser.uid ? "" : <Avatar src={thisUser.photoURL}/>
                 }
 
-                {props.message.type !== "photo" ?
-                <div className="Message_text" title={createDate(props.message.date)}>
-                    {props.message.type === "file" ?
-                        <a className="fileMessage" href={props.message.file} target="_blank">
-                            <span>
-                                {props.message.fileName}
-                            </span>
-                            <p><SystemUpdateAltIcon /></p>
-                        </a>
-                        :
-                        <span>{props.message.text}</span>
-                    }  
+                <div className="MessageFlex">
+                    <span className="MessageUserName">{thisUser.displayName}</span>
+                        {props.message.type !== "photo" ?
+                        <div className="Message_text" title={createDate(props.message.date)}>
+                            {props.message.type === "file" ?
+                                <a className="fileMessage" href={props.message.file} target="_blank">
+                                    <span>
+                                        {props.message.fileName}
+                                    </span>
+                                    <p><SystemUpdateAltIcon /></p>
+                                </a>
+                                :
+                                <span>{props.message.text}</span>
+                            }  
+                        </div>
+                            :
+                        <img alt="Message" className="Message_Image" src={props.message.photo}/>
+                        }
                 </div>
-                    :
-                <img alt="Message" className="Message_Image" src={props.message.photo}/>
-                }
             </div>
             <IconButton onClick={handleClick}>
                 <MoreHorizIcon />

@@ -45,17 +45,6 @@ export default function Chat(props) {
 
     return (
       <>
-        {/* { showToBottom ?
-                  <div className="toBottom">
-                      <div>
-                          <IconButton onClick={() => main.scrollTo(0, main.scrollHeight)} size="medium">
-                              <ArrowDownwardIcon fontSize="inherit" />
-                          </IconButton> 
-                      </div>
-                  </div>
-                  : ""
-              } */}
-              
           <div className="Chat">
               { props.isGroup ? 
                 <>

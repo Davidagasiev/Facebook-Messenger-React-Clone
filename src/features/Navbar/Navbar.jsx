@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {useSelector} from "react-redux";
-import { Avatar, IconButton} from '@material-ui/core';
 
-import {CurrentUserSelector} from "../Users/CurrentUserSlice";
+import { Avatar } from '@material-ui/core';
 
 import "./Navbar.scss";
-import { auth } from '../../app/firebase';
 import { GroupsSelector } from '../Groups/GroupsSlice';
 import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer';
 import GroupInfo from "../Groups/GroupInfo/GroupInfo";

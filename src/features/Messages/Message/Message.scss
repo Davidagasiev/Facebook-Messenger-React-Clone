@@ -22,8 +22,19 @@
     }
 }
 
+.MessageUserName{
+    color: gray;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    margin: 2px 5px;
+}
+
 .CUIA{
     flex-direction: row-reverse;
+    .MessageUserName{
+        display: none;
+    }
 }
 
 .current_user_is_author, .other_user_is_author{
@@ -51,6 +62,12 @@
         a{
             color: black;
         }
+    }
+
+    .MessageFlex{
+        display: flex;
+        flex-direction: column;
+        align-items: end;
     }
 }
 
