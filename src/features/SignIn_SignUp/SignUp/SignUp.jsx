@@ -26,8 +26,8 @@ export default function SignUp() {
                 h3="Made by David Agasiev" 
                 style={{paddingTop: "50px"}} />
             <div className="sign_nav">
-                <NavLink className="site" to="/SignIn" activeClassName="activeSite">Sign In</NavLink>
                 <NavLink to="/SignUp" activeClassName="activeSite">Sign Up</NavLink>
+                <NavLink className="site" to="/SignIn" activeClassName="activeSite">Sign In</NavLink>
             </div>
             <form style={{minHeight: "250px"}} onSubmit={(e) => {
                 e.preventDefault();
@@ -39,7 +39,7 @@ export default function SignUp() {
                 
                 <TextField type="password" label="Password" value={password} onChange={setPassword}/>
                 
-                <Button variant="contained" color="primary" type="submit">SignIn</Button>
+                <Button variant="contained" color="primary" type="submit">Sign Up</Button>
             </form>
             <div className="quick_access">
                 <p>Quick access with</p>

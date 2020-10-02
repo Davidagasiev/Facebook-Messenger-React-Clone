@@ -43,7 +43,8 @@
     }
 }
 
-.messagingDisabled{ 
+.messagingDisabled{
+    padding: 0 !important; 
     button, div{
        svg{
         color: #A4AAB3;

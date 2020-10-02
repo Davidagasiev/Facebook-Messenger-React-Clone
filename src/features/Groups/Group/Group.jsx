@@ -30,7 +30,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
 
     return (
         <div className={`Group ${props.id === props.groupId ? "activeGroup" : "" }`}>
-            <Link to={`/Groups/${props.id}`}>
+            <Link to={`/${props.id}`}>
                 <div className="group">
                     <Avatar src={props.GImage}/>
                     <div>

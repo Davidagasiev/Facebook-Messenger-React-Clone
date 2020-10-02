@@ -24,13 +24,15 @@ function App(props) {
         dispatch(setCurrentUser({displayName, email, uid, photoURL}));
 
         if(props.location.pathname === "/SignUp" || props.location.pathname === "/SignIn"){
-          props.history.push("/Groups/12");
+          props.history.push("/");
         }
 
       }else{
         //If User Logges Out...
         dispatch(setCurrentUser(null));
-        if(props.location.pathname !== "/SignUp") {
+        if(props.location.pathname !== "/SignIn") {
+          props.history.push("/SignUp");
+        }else if(props.location.pathname !== "/SignUp"){
           props.history.push("/SignIn");
         }
       }
@@ -57,7 +59,10 @@ function App(props) {
 
         <Switch>
           { currentUser ? 
-          <Route exact path="/Groups/:GroupId" component={(RouteProps) => <Main {...RouteProps} />}/>
+          <>
+            <Route exact path="/:GroupId" component={(RouteProps) => <Main {...RouteProps} />}/>
+            <Route exact path="/" component={(RouteProps) => <Main match={{params: {GroupId: "Group"}}} />}/>
+          </>
             :
           <>
           <Route exact path="/SignIn" component={SignIn}/> 
