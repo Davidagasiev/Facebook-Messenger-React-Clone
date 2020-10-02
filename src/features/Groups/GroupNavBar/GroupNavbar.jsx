@@ -85,109 +85,126 @@ const classes = useStyles();
     const [progress, setProgress] = useState(0);
     const [chosenFile, setChosenFile] = useState("");
 
-  
+// Group Searching Group
+    const [searchedGroup, setSearchedGroup] = useInput();
 
+  function SearchedGroupChange (e){
+    setSearchedGroup(e);
+    props.filterGroups(e.target.value);
+  } 
+  
     return (
         <div className="GroupNavbar">
-            <div>
-                <Avatar src={currentUser.photoURL}/>
-                <h2>Chats</h2>
+            <div className="GroupNavbarContent">
+                <div>
+                    <Avatar src={currentUser.photoURL}/>
+                    <h2>Chats</h2>
+                </div>
+
+                <div>
+                
+                    <IconButton title="Create Group" onClick={handleOpen}>
+                        <AddIcon />
+                    </IconButton>
+                    <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        className={classes.modal}
+                        open={open}
+                        onClose={handleModalClose}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                        timeout: 500,
+                        }}
+                    >
+                        <Fade in={open}>
+                        <div className={classes.paper}>
+                        <div className="userAuth">
+                            <h1>Create Group</h1>
+                            <TextField type="text" required value={newGroupName} onChange={setNewGroupName} label="Group Name" />
+            {/* Choosing group Photo */}
+                            <input
+                                accept="image/*"
+                                className="fileInput"
+                                multiple
+                                id="fileButton"
+                                type="file"
+                                onChange={e => handleUpload(e, setGImage, setChosenFile)}
+                            />
+                            
+                            <label htmlFor="fileButton">
+                                <Button style={{width: "100%"}} variant="contained" color="primary" component="span">
+                                Choose Photo
+                                </Button>
+                            </label>
+                                
+                            {GImage ? 
+                                <div className="chosenPhoto" style={{backgroundImage: `url(${chosenFile})`}}></div> : ""
+                            }
+                            {showProgress ? <CircularProgress variant="static" value={progress} /> : ""}
+                            {   chosenFile === "" ?
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button}
+                                    startIcon={<AddCircleIcon />}
+                                    disabled
+                                >
+                                    Create Group
+                                </Button> :
+                                <Button
+                                    onClick={e => {
+                                    createNewGroup(
+                                        e, 
+                                        newGroupName, 
+                                        GImage, 
+                                        setShowProgress, 
+                                        setProgress,
+                                        resetNewGroupName,
+                                        setGImage,
+                                        setChosenFile,
+                                        handleModalClose
+                                    )
+                                }} 
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button}
+                                    startIcon={<AddCircleIcon />}
+                                >
+                                    Create Group
+                                </Button>
+                                }  
+            {/* Choosing group Photo */}
+                        </div>
+                        </div>
+                        </Fade>
+                    </Modal>
+
+                    <IconButton title="Settings" onClick={handleClick}>
+                        <SettingsIcon />
+                    </IconButton>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <ProfileSettings {...currentUser} handleClose={handleClose}/>
+                            <Divider />
+                            <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
+                        </Menu>
+                </div>
             </div>
 
-            <div>
-            
-                <IconButton title="Create Group" onClick={handleOpen}>
-                    <AddIcon />
-                </IconButton>
-                <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    className={classes.modal}
-                    open={open}
-                    onClose={handleModalClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                    timeout: 500,
-                    }}
-                >
-                    <Fade in={open}>
-                    <div className={classes.paper}>
-                    <div className="userAuth">
-                        <h1>Create Group</h1>
-                        <TextField type="text" required value={newGroupName} onChange={setNewGroupName} label="Group Name" />
-        {/* Choosing group Photo */}
-                        <input
-                            accept="image/*"
-                            className="fileInput"
-                            multiple
-                            id="fileButton"
-                            type="file"
-                            onChange={e => handleUpload(e, setGImage, setChosenFile)}
-                        />
-                        
-                        <label htmlFor="fileButton">
-                            <Button style={{width: "100%"}} variant="contained" color="primary" component="span">
-                            Choose Photo
-                            </Button>
-                        </label>
-                            
-                        {GImage ? 
-                            <div className="chosenPhoto" style={{backgroundImage: `url(${chosenFile})`}}></div> : ""
-                        }
-                        {showProgress ? <CircularProgress variant="static" value={progress} /> : ""}
-                        {   chosenFile === "" ?
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                className={classes.button}
-                                startIcon={<AddCircleIcon />}
-                                disabled
-                            >
-                                Create Group
-                            </Button> :
-                            <Button
-                                onClick={e => {
-                                createNewGroup(
-                                    e, 
-                                    newGroupName, 
-                                    GImage, 
-                                    setShowProgress, 
-                                    setProgress,
-                                    resetNewGroupName,
-                                    setGImage,
-                                    setChosenFile,
-                                    handleModalClose
-                                )
-                            }} 
-                                variant="contained"
-                                color="secondary"
-                                className={classes.button}
-                                startIcon={<AddCircleIcon />}
-                            >
-                                Create Group
-                            </Button>
-                            }  
-        {/* Choosing group Photo */}
-                    </div>
-                    </div>
-                    </Fade>
-                </Modal>
-
-                <IconButton title="Settings" onClick={handleClick}>
-                    <SettingsIcon />
-                </IconButton>
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <ProfileSettings {...currentUser} handleClose={handleClose}/>
-                        <Divider />
-                        <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
-                    </Menu>
+            <div className="SearchGroups">
+                <input 
+                    type="text" 
+                    placeholder="Search"
+                    value={searchedGroup}
+                    onChange={SearchedGroupChange}
+                />
             </div>
         </div>
     )

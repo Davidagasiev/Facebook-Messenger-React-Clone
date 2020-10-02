@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GroupNavbar from './GroupNavBar/GroupNavbar.jsx'
 import GroupList from './GroupList/GroupList.jsx'
 
@@ -9,12 +9,24 @@ import { GroupsSelector } from './GroupsSlice.js';
 export default function Groups(props) {
 
     const groups = useSelector(GroupsSelector);
-    const group = groups.find(group => group.id === props.groupId);
+
+    const [filteredGroups, setFilteredGroups] = useState([]);
+
+    useEffect(() => {
+        if(groups.length !== 0){
+            setFilteredGroups(groups);
+        }
+    }, [groups])
+
+    function filterGroups(searchedGroup){
+        const newFilteredGroups = groups.filter(group => group.GName.includes(searchedGroup));
+        setFilteredGroups(newFilteredGroups);
+    }
 
     return (
         <div className="Groups">
-            <GroupNavbar />
-            <GroupList groups={groups} groupId={props.groupId}/>
+            <GroupNavbar filterGroups={filterGroups}/>
+            <GroupList groups={filteredGroups} groupId={props.groupId}/>
         </div>
     )
 }
