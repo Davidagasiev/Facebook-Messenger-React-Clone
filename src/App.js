@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 
 import { auth, db } from "./app/firebase";
 
@@ -52,16 +52,42 @@ function App(props) {
       })
   }, [])
 
+// Dark Mode
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if(window.localStorage.getItem("darkMode")){
+      setDarkMode(window.localStorage.getItem("darkMode"))
+    }else{
+      setDarkMode(false);
+    }
+  }, [])
+
+  function switchDarkMode() {
+    window.localStorage.setItem("darkMode", !darkMode);
+    setDarkMode(!darkMode);
+  }
 
   return (
-    <div className="App">
+    <div className={`App ${darkMode ? "darkMode" : ""}`}>
 
         <Switch>
           { currentUser ? 
           <>
-            <Route exact path="/:GroupId" component={(RouteProps) => <Main {...RouteProps} />}/>
-            <Route exact path="/" component={(RouteProps) => <Main match={{params: {GroupId: "Group"}}} />}/>
+            <Route exact path="/:GroupId" component={(RouteProps) => 
+              <Main 
+                darkMode={darkMode}
+                switchDarkMode={switchDarkMode} 
+                {...RouteProps} />}
+              />
+            <Route exact path="/" component={(RouteProps) => 
+            <Main 
+              darkMode={darkMode}
+              switchDarkMode={switchDarkMode}
+              match={{params: {GroupId: "Group"}}} />
+            }
+              />
           </>
             :
           <>

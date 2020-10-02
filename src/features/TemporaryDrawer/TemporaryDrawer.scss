@@ -1,0 +1,16 @@
+.TemporaryDrawer{
+    height: 100%;
+}
+
+.DarkTemporaryDrawer{
+    background-color: #282E33;
+    color: white;
+
+    textarea{
+        color: white;
+    }
+
+    .GroupFiles .Files .file:hover{
+        background-color: #384148;
+    }
+}

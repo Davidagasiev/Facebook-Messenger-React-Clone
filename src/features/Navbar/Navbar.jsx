@@ -36,6 +36,7 @@ export default function Navbar(props) {
                 </div>
                 <div className="rightBar">
                     <TemporaryDrawer 
+                        darkMode={props.darkMode}
                         buttonTitle="Conversation Information"
                         component={GroupInfo} 
                         componentProps={{groupId: props.groupId}} 

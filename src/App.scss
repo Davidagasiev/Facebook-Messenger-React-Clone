@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica Neue, Segoe UI, Helvetica, Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+body{
+    padding-right: 0 !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+.darkMode{
+    color: white;
+
+    .Chat{
+        background-color: #18191D;
+        border: none;
+
+        .Message{
+            .Message_text{
+                background-color: #33393F;
+                color: white;
+            }
+
+            .MuiSvgIcon-root{
+                color: gray;
+            }
+        }
+        
+        .Navbar {
+            background-color: #282E33;
+            border-bottom: none;
+        }
+
+        .MessageAdding form {
+            background-color: #282E33;
+
+            input{
+                background-color: #414B53;
+                color: white;
+            }
+
+            label:hover, div:hover{
+                background-color: #414B53;
+            }
+        }
+    }
+
+    .Groups{
+        .GroupNavbar, .GroupList {
+            background-color: #282E33;
+        }
+
+        .GroupNavbar{
+            svg{
+                color: gray;
+            }
+
+            input{
+                background-color: #414B53;
+                color: white;
+            }
+            .MuiPopover-paper{
+                background-color: #282E33;
+                color: white;
+            }
+
+        }
+
+        .GroupList{
+            .Group{
+                p, span{
+                    color: white;
+                }
+                svg{
+                    color: gray;
+                }
+            }
+
+            .activeGroup{
+                background-color: #009687;
+            }
+        }
+    }
+}

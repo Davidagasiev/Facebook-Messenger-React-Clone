@@ -53,7 +53,7 @@ export default function Chat(props) {
                       <MessageList messages={props.messages} />
                   </div>
                   
-                  <Navbar groupId={props.groupId}/>
+                  <Navbar darkMode={props.darkMode} groupId={props.groupId}/>
                 </>
                 : ""
               }

@@ -25,7 +25,7 @@ export default function Groups(props) {
 
     return (
         <div className="Groups">
-            <GroupNavbar filterGroups={filterGroups}/>
+            <GroupNavbar darkMode={props.darkMode} switchDarkMode={props.switchDarkMode} filterGroups={filterGroups}/>
             <GroupList groups={filteredGroups} groupId={props.groupId}/>
         </div>
     )

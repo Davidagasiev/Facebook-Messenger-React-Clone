@@ -31,8 +31,9 @@ export default function Main(props) {
 
   return (
     <div className="Main">
-        <Groups groupId={groupId}/>
+        <Groups groupId={groupId} darkMode={props.darkMode} switchDarkMode={props.switchDarkMode}/>
         <Chat 
+          darkMode={props.darkMode}
           groupId={groupId} 
           messages={groupMessages} 
           isGroup={groups.find(group => group.id === groupId) === undefined ? false : true}/>

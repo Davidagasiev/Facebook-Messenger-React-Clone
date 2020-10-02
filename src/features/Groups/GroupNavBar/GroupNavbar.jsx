@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from "react-redux";
 
-import { Avatar, Button, CircularProgress, Divider, IconButton, Menu, MenuItem, TextField} from '@material-ui/core';
+import { Avatar, Button, CircularProgress, Divider, FormControlLabel, IconButton, Menu, MenuItem, Switch, TextField} from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
@@ -192,6 +192,21 @@ const classes = useStyles();
                             onClose={handleClose}
                         >
                             <ProfileSettings {...currentUser} handleClose={handleClose}/>
+{/* Dark Mode Switching */}
+                            <MenuItem onClick={props.switchDarkMode}>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={props.darkMode}
+                                            onChange={props.switchDarkMode}
+                                            name="DarkMode"
+                                            color="primary"
+                                        />
+                                        }
+                                        label="Night"
+                                    />
+                            </MenuItem>
+{/* Dark Mode Switching */}
                             <Divider />
                             <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
                         </Menu>

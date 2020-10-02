@@ -1,4 +1,6 @@
 import React from 'react';
+import "./TemporaryDrawer.scss"
+
 import Drawer from '@material-ui/core/Drawer';
 import { IconButton } from '@material-ui/core';
 
@@ -17,7 +19,7 @@ export default function TemporaryDrawer(props) {
 
   const list = (anchor) => (
     <div
-      className="TemporaryDrawer"
+      className={`TemporaryDrawer ${props.darkMode ? "DarkTemporaryDrawer" : ""}`}
       role="presentation"
     >
         <props.component {...props.componentProps}/>
