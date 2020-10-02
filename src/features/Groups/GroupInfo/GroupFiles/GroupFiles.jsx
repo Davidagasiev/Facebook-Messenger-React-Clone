@@ -13,17 +13,22 @@ export default function GroupFiles(props) {
     return (
         <div className="GroupFiles">
             <p>SHARED FILES</p>
+            {messages.length === 0 ?
+                <span>No Files</span>
+                
+                :
 
-            <div className="Files">
-                {messages.map(message => 
-                    <a className="file" href={message.file} key={message.id} target="_blank">
-                        {
-                            `${message.fileName.slice(0, 30)}${message.fileName.length > 30 ? "..." : ""}`
-                        }
-                    </a>
-                    )
-                }
-            </div>
+                <div className="Files">
+                    {messages.map(message => 
+                        <a className="file" href={message.file} key={message.id} target="_blank">
+                            {
+                                `${message.fileName.slice(0, 30)}${message.fileName.length > 30 ? "..." : ""}`
+                            }
+                        </a>
+                        )
+                    }
+                </div>
+            }
         </div>
     )
 }
