@@ -11,27 +11,29 @@ import {changeUserImage, changeUserName} from "./Functions";
 import "./ProfileSettings.scss";
 
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    borderRadius: "5px",
-    outline: "none",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-    
-  },
-}));
+
 
 
 export default function ProfileSettings(props) {
+
+  const useStyles = makeStyles((theme) => ({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper: {
+      backgroundColor: props.darkMode ? "#282E33" : theme.palette.background.paper,
+      color: props.darkMode ? "white" : "black",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      borderRadius: "5px",
+      outline: "none",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"  
+    },
+  }));
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);

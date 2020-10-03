@@ -19,24 +19,6 @@ import "./GroupNavbar.scss";
 import ProfileSettings from '../../ProfileSettings/ProfileSettings';
 
 
-const useStyles = makeStyles((theme) => ({
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      outline: "none",
-      borderRadius: "10px",
-      textAlign: "center",
-      maxWidth: "300px"
-    },
-  }));
-
-
 export default function GroupNavbar(props) {
 
     
@@ -65,6 +47,25 @@ export default function GroupNavbar(props) {
     };
 
 // For group creating Modal
+
+const useStyles = makeStyles((theme) => ({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper: {
+      backgroundColor: props.darkMode ? "#282E33" : theme.palette.background.paper,
+      color: props.darkMode ? "white" : "black",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      outline: "none",
+      borderRadius: "10px",
+      textAlign: "center",
+      maxWidth: "300px",
+    },
+  }));
+
 const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -111,7 +112,11 @@ const classes = useStyles();
                         aria-describedby="transition-modal-description"
                         className={classes.modal}
                         open={open}
-                        onClose={handleModalClose}
+                        onClose={() => {
+                            handleModalClose();
+                            setGImage(null);
+                            setChosenFile("");
+                        }}
                         closeAfterTransition
                         BackdropComponent={Backdrop}
                         BackdropProps={{
@@ -122,7 +127,13 @@ const classes = useStyles();
                         <div className={classes.paper}>
                         <div className="userAuth">
                             <h1>Create Group</h1>
-                            <TextField type="text" required value={newGroupName} onChange={setNewGroupName} label="Group Name" />
+                            <TextField 
+                                type="text" 
+                                required 
+                                value={newGroupName} 
+                                onChange={setNewGroupName} 
+                                label="Group Name"
+                            />
             {/* Choosing group Photo */}
                             <input
                                 accept="image/*"
@@ -191,24 +202,28 @@ const classes = useStyles();
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                            <ProfileSettings {...currentUser} handleClose={handleClose}/>
-{/* Dark Mode Switching */}
-                            <MenuItem onClick={props.switchDarkMode}>
-                                <FormControlLabel
-                                    control={
-                                        <Switch
-                                            checked={props.darkMode}
-                                            onChange={props.switchDarkMode}
-                                            name="DarkMode"
-                                            color="primary"
+                                <ProfileSettings 
+                                    darkMode={props.darkMode} 
+                                    {...currentUser} 
+                                    handleClose={handleClose}
+                                />
+    {/* Dark Mode Switching */}
+                                <MenuItem onClick={props.switchDarkMode}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={props.darkMode}
+                                                onChange={props.switchDarkMode}
+                                                name="DarkMode"
+                                                color="primary"
+                                            />
+                                            }
+                                            label="Night"
                                         />
-                                        }
-                                        label="Night"
-                                    />
-                            </MenuItem>
-{/* Dark Mode Switching */}
-                            <Divider />
-                            <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
+                                </MenuItem>
+    {/* Dark Mode Switching */}
+                                <Divider />
+                                <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
                         </Menu>
                 </div>
             </div>

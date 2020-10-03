@@ -18,9 +18,11 @@ a{
     text-decoration: none;
 }
 
+
+
 .darkMode{
     color: white;
-
+    
     .Chat{
         background-color: #18191D;
         border: none;
@@ -33,6 +35,10 @@ a{
 
             .MuiSvgIcon-root{
                 color: gray;
+            }
+
+            .fileMessage{
+                color: white;
             }
         }
         

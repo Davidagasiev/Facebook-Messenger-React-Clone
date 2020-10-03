@@ -6,7 +6,6 @@ import GroupImages from "./GroupImages/GroupImages.jsx";
 import GroupFiles from "./GroupFiles/GroupFiles.jsx";
 
 import { TextField, Button } from "@material-ui/core";
-import PhotoIcon from '@material-ui/icons/Photo';
 
 import "./GroupInfo.scss";
 import {changeGName, changeGImage} from "./Functions";
@@ -33,7 +32,6 @@ export default function GroupInfo(props) {
                     className="groupImg" 
                     style={{backgroundImage: `url(${group.GImage})`}}
                     />
-                <p> <PhotoIcon /> Edit </p>
             </label>
                 
 

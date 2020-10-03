@@ -55,13 +55,13 @@ function App(props) {
 // Dark Mode
 
   const [darkMode, setDarkMode] = useState(false);
-
   useEffect(() => {
     if(window.localStorage.getItem("darkMode")){
-      setDarkMode(window.localStorage.getItem("darkMode"))
+      setDarkMode(eval(window.localStorage.getItem("darkMode")))
     }else{
       setDarkMode(false);
     }
+    
   }, [])
 
   function switchDarkMode() {
