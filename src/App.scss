@@ -53,18 +53,28 @@ a{
             border-bottom: none;
         }
 
-        .MessageAdding form {
+        .MessageAdding {
+            border-top: none !important;
             background-color: #282E33;
 
-            input{
-                background-color: #414B53;
-                color: white;
+            .chosenFile{
+                border: none;
             }
 
-            label:hover, div:hover{
-                background-color: #414B53;
-            }
+            form {
+                background-color: #282E33;
+
+                input{
+                    background-color: #414B53;
+                    color: white;
+                }
+
+                label:hover, div:hover{
+                    background-color: #414B53;
+                }
+            }    
         }
+
     }
 
     .Groups{

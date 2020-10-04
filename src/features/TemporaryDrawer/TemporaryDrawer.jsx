@@ -22,7 +22,7 @@ export default function TemporaryDrawer(props) {
       className={`TemporaryDrawer ${props.darkMode ? "DarkTemporaryDrawer" : ""}`}
       role="presentation"
     >
-        <props.component {...props.componentProps}/>
+        <props.component darkMode={props.darkMode} {...props.componentProps}/>
     </div>
   );
 

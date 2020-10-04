@@ -1,10 +1,13 @@
 import { db, storage } from "../../../app/firebase";
 import {v4 as uuid} from "uuid";
 
-export const AddMessage = (message, resetMessage, uid, GId) => {
+export const AddMessage = (message, resetMessage, uid, GId, groups) => {
     if(message !== "" && message.split("").some(char => char !== " ")){
+
+
         const currentDate = new Date();
         db.collection("messages").add({
+
             type: "text",
             text: message,
             uid,
@@ -17,15 +20,32 @@ export const AddMessage = (message, resetMessage, uid, GId) => {
                 time: currentDate.getTime(),
                 day: currentDate.getUTCDate()
             }
+        
         })
         .then(function(docRef) {
+
             const chat = document.getElementsByClassName("chat")[0];
             chat.scrollTo(0, chat.scrollHeight);
             resetMessage("");
+// Updating lastModified of group
+
+            const currentGroup = groups.find(group => group.id === GId);
+            db.collection("groups").doc(GId).set({
+                GName: currentGroup.GName,
+                GImage: currentGroup.GImage,
+                date: {
+                    time: currentDate.getTime()
+                }
+            })
+            .then(() => console.log("lastModified was Updated"))
+            .catch(error => console.log(error))
+
         })
         .catch(function(error) {
             alert(error.message);
         });
+    
+    
     }
 }
 
@@ -42,7 +62,7 @@ export const handlePhotoChange = (e, setUpload, setChosenFile) => {
     }
 }
 
-export const AddPhotoMessage = (upload, setUpload, setChosenFile, uid, GId, setSendDisabled) => {
+export const AddPhotoMessage = (upload, setUpload, setChosenFile, uid, GId, groups, setSendDisabled) => {
         setSendDisabled(true);
         const newMessageId = uuid();
         const uploadTask = storage.ref(`images/${newMessageId}`).put(upload);
@@ -80,6 +100,19 @@ export const AddPhotoMessage = (upload, setUpload, setChosenFile, uid, GId, setS
                         setChosenFile("");
                         setUpload(null);
                         setSendDisabled(false);
+
+// Updating lastModified of group
+                        const currentGroup = groups.find(group => group.id === GId);
+                        db.collection("groups").doc(GId).set({
+                            GName: currentGroup.GName,
+                            GImage: currentGroup.GImage,
+                            date: {
+                                time: currentDate.getTime()
+                            }
+                        })
+                        .then(() => console.log("lastModified was Updated"))
+                        .catch(error => console.log(error))
+
                     })
                     .catch(function(error) {
                         alert(error.message);
@@ -98,7 +131,7 @@ export const handleFileChange = (e, setUpload) => {
     }
 }
 
-export const AddFileMessage = (upload, setUpload, uid, GId, setSendDisabled) => {
+export const AddFileMessage = (upload, setUpload, uid, GId, groups, setSendDisabled) => {
         setSendDisabled(true);
         const newMessageId = uuid();
         const uploadTask = storage.ref(`files/${newMessageId}`).put(upload);
@@ -136,6 +169,19 @@ export const AddFileMessage = (upload, setUpload, uid, GId, setSendDisabled) => 
                         chat.scrollTo(0, chat.scrollHeight);
                         setUpload(null);
                         setSendDisabled(false);
+
+// Updating lastModified of group
+                        const currentGroup = groups.find(group => group.id === GId);
+                        db.collection("groups").doc(GId).set({
+                            GName: currentGroup.GName,
+                            GImage: currentGroup.GImage,
+                            date: {
+                                time: currentDate.getTime()
+                            }
+                        })
+                        .then(() => console.log("lastModified was Updated"))
+                        .catch(error => console.log(error))   
+                        
                     })
                     .catch(function(error) {
                         alert(error.message);

@@ -18,7 +18,7 @@ export default function GroupInfo(props) {
     const [ newGName, setNewGName ] = useState(group.GName);
 
     return (
-        <div className="GroupInfo">
+        <div className="GroupInfo" style={{backgroundColor: props.darkMode ? "#282E33" : "white" }}>
             <input
                             accept="image/*"
                             className="fileInput"

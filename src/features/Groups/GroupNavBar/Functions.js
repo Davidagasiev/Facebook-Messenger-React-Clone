@@ -40,10 +40,13 @@ function createNewGroup(event, GName, GImage, setShowProgress, setProgress, rese
             .child(newGroupId)
             .getDownloadURL()
             .then(url => {
-                
+                const currentDate = new Date();
                 db.collection("groups").add({
                         GName,
-                        GImage: url
+                        GImage: url,
+                        date: {
+                            time: currentDate.getTime()
+                        }
                         })
                         .then(function(docRef) {
                             console.log("Document written with ID: ", docRef.id);

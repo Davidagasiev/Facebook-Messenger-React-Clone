@@ -5,7 +5,6 @@ import "./MessageAdding.scss";
 import {AddMessage, handlePhotoChange, AddPhotoMessage, handleFileChange, AddFileMessage} from "./Functions";
 
 import {CurrentUserSelector} from "../../Users/CurrentUserSlice";
-import useInput from "../../../Hooks/useInput";
 import { IconButton } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import PhotoIcon from '@material-ui/icons/Photo';
@@ -16,12 +15,14 @@ import Popover from '@material-ui/core/Popover';
 
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import { GroupsSelector } from '../../Groups/GroupsSlice';
 
 export default function MessageAdding(props) {
 
     const [ message, handleMessageChange ] = useState("");
     const currentUser = useSelector(CurrentUserSelector);
 
+    const groups = useSelector(GroupsSelector);
 // For photo message
 
     const [upload, setUpload] = useState(null);
@@ -84,12 +85,12 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                 <form onSubmit={(e) => {
                     e.preventDefault(); 
                     if(chosenFile !== ""){
-                        AddPhotoMessage(upload, setUpload, setChosenFile, currentUser.uid, props.groupId, setSendDisabled);
+                        AddPhotoMessage(upload, setUpload, setChosenFile, currentUser.uid, props.groupId, groups, setSendDisabled);
                     }
                     else if(uploadFile !== null){
-                        AddFileMessage(uploadFile, setUploadFile, currentUser.uid, props.groupId, setSendDisabled);
+                        AddFileMessage(uploadFile, setUploadFile, currentUser.uid, props.groupId, groups, setSendDisabled);
                     }else if(chosenFile === "" && uploadFile === null){
-                        AddMessage(message, handleMessageChange, currentUser.uid, props.groupId);
+                        AddMessage(message, handleMessageChange, currentUser.uid, props.groupId, groups);
                     }
                     }}>    
 {/* For file  */}
