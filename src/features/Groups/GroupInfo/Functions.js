@@ -3,9 +3,13 @@ import {v4 as uuid} from "uuid"
 
 
 export function changeGName(newGName, GId, GImage) {
+    const currentDate = new Date();
     db.collection("groups").doc(GId).set({
         GName: newGName,
-        GImage
+        GImage,
+        date: {
+            time: currentDate.getTime()
+        }
     })
 }
 
@@ -29,15 +33,18 @@ export function changeGImage(e, GId, GName) {
                 .child(newGroupImageId)
                 .getDownloadURL()
                 .then(url => {
-                    
+                    const currentDate = new Date();
                     db.collection("groups").doc(GId).set({
-                            GName,
-                            GImage: url
-                            })
-                            .then(function(docRef) {
-                            })
-                            .catch(function(error) {
-                            });   
+                        GName,
+                        GImage: url,
+                        date: {
+                            time: currentDate.getTime()
+                        }
+                    })
+                    .then(function(docRef) {
+                    })
+                    .catch(function(error) {
+                    });   
                 })
             }
         )
