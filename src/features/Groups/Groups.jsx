@@ -19,7 +19,7 @@ export default function Groups(props) {
     }, [groups])
 
     function filterGroups(searchedGroup){
-        const newFilteredGroups = groups.filter(group => group.GName.includes(searchedGroup));
+        const newFilteredGroups = groups.filter(group => group.GName.toLowerCase().includes(searchedGroup.toLowerCase()));
         setFilteredGroups(newFilteredGroups);
     }
 
