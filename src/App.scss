@@ -59,6 +59,12 @@ a{
 
             .chosenFile{
                 border: none;
+
+                button{
+                    svg{
+                        color: white;
+                    }
+                }
             }
 
             form {

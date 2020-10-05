@@ -12,6 +12,8 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import DescriptionIcon from '@material-ui/icons/Description';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import Popover from '@material-ui/core/Popover';
+import CloseIcon from '@material-ui/icons/Close';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
@@ -55,16 +57,6 @@ const [anchorEl, setAnchorEl] = React.useState(null);
 
       
       <div className="chosenFiles">
-    {/* Showing Chosen Photo */}
-            {
-                chosenFile !== "" ?       
-                        <div className="chosenPhotoFile" style={{backgroundImage: `url(${chosenFile})`}}>
-                        </div>
-                    :
-                        ""
-            }
-    {/* Showing Chosen Photo */}
-
     {/* Showing Chosen File */}
             {uploadFile !== null ?
                 <div className="chosenFile">
@@ -86,11 +78,34 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                             uploadFile.name
                         }</span>
                     </div>
+                    <IconButton onClick={() => {
+                            setUploadFile(null);
+                        }}>
+                            <CloseIcon />
+                    </IconButton>
                 </div>
             :
                 ""
             }
     {/* Showing Chosen File */}
+
+    {/* Showing Chosen Photo */}
+    {
+                chosenFile !== "" ?       
+                        <div className="chosenPhotoFile" style={{backgroundImage: `url(${chosenFile})`}}>
+                            <IconButton onClick={() => {
+                                setUpload(null);
+                                setChosenFile("");
+                            }}>
+                                <HighlightOffIcon />
+                            </IconButton>
+                            
+                        </div>
+                    :
+                        ""
+            }
+    {/* Showing Chosen Photo */}
+
       </div>
         
 

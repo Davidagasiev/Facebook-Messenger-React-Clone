@@ -55,11 +55,53 @@
 .chosenFiles{
     display: flex;
     align-items: center;
+
+    .chosenPhotoFile{
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+
+        button{
+                transition: all .2s ease-in-out ;
+                opacity: 0;
+            }
+
+        svg{
+            color: white;
+            font-size: 20px;
+        }
+
+        &:hover{
+            button{
+                opacity: 1;
+            }
+        }
+    }
+
+    .chosenFile{
+        button{
+            opacity: 0;
+            transition: all 200ms ease-in-out;
+            margin-left: 5px;
+            svg{
+                color: black;
+            }
+        }
+        &:hover{
+            button{
+                opacity: 1;
+            }
+        }
+    }
+
 }
 
 .chosenPhotoFile, .chosenFile{
     margin: 10px; 
     margin-left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chosenPhotoFile{
@@ -79,9 +121,9 @@
 
     .fileIcon{
         background-color: #0099FF;
-        padding: 15px;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
+        padding: 15px;
 
         svg{
             color: white;
