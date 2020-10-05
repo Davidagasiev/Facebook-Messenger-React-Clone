@@ -15,7 +15,7 @@ export default function GroupImages(props) {
             <p>SHARED PHOTOS</p>
 
             {messages.length === 0 ?
-                <span>No Images</span>
+                <span>No Photos</span>
                     :
                 <div className="Images">
                     {messages.map(message => 

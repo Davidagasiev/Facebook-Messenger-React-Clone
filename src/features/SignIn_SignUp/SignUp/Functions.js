@@ -12,10 +12,8 @@ const SignUpFunc = (username, email, password) => {
           photoURL: "https://us.v-cdn.net/6022045/uploads/defaultavatar.png"
       })
       .then(function(docRef) {
-        //   console.log("Document written with ID: ", docRef.id);
       })
       .catch(function(error) {
-        //   console.error("Error adding document: ", error);
       });
 
       return authUser.user.updateProfile({

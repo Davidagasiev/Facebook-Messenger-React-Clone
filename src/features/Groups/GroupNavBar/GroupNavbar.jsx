@@ -97,7 +97,7 @@ const classes = useStyles();
         <div className="GroupNavbar">
             <div className="GroupNavbarContent">
                 <div>
-                    <Avatar src={currentUser.photoURL}/>
+                    <Avatar src={currentUser.photoURL || ""}/>
                     <h2>Chats</h2>
                 </div>
 
@@ -145,7 +145,7 @@ const classes = useStyles();
                             
                             <label htmlFor="fileButton">
                                 <Button style={{width: "100%"}} variant="contained" color="primary" component="span">
-                                Choose Photo
+                                    Choose Photo
                                 </Button>
                             </label>
                                 

@@ -38,9 +38,9 @@ export const signInWithGoogle = (users) => auth.signInWithPopup(provider)
     .catch(error => {
     });
 
-    const facebookProvider = new firebase.auth.FacebookAuthProvider();
-    facebookProvider.setCustomParameters({ prompt: 'select_account' });
-    export const signInWithFacebook = (users) => auth.signInWithPopup(facebookProvider)
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
+facebookProvider.setCustomParameters({ prompt: 'select_account' });
+export const signInWithFacebook = (users) => auth.signInWithPopup(facebookProvider)
     .then(result => {
         const newUser = result.user;
             if(!(users.some(user => user.uid === newUser.uid))){
