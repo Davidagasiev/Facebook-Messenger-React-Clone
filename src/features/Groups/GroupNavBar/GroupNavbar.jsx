@@ -28,7 +28,7 @@ export default function GroupNavbar(props) {
 
     useEffect(() => {
         if(users.length !== 0 && curUser !== null){
-            setCurrentUser(users.find(user => user.uid === curUser.uid))
+            setCurrentUser(users.find(user => user.uid === curUser.uid) || {})
         }
     }, [users, curUser])
 

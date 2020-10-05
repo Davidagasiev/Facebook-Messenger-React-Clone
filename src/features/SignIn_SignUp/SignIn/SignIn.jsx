@@ -27,8 +27,8 @@ export default function SignIn() {
                 h3="Made by David Agasiev" 
                 style={{paddingTop: "50px"}} />
             <div className="sign_nav">
-                <NavLink to="/SignUp" activeClassName="activeSite">Sign Up</NavLink>
-                <NavLink className="site" to="/SignIn" activeClassName="activeSite">Sign In</NavLink>
+                <NavLink to="/User/SignUp" activeClassName="activeSite">Sign Up</NavLink>
+                <NavLink className="site" to="/User/SignIn" activeClassName="activeSite">Sign In</NavLink>
             </div>
 
             <form onSubmit={(e) => {

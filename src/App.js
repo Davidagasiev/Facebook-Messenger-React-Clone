@@ -23,17 +23,17 @@ function App(props) {
         const {displayName, email, uid, photoURL} = authUser;
         dispatch(setCurrentUser({displayName, email, uid, photoURL}));
 
-        if(props.location.pathname === "/SignUp" || props.location.pathname === "/SignIn"){
+        if(props.location.pathname === "/User/SignUp" || props.location.pathname === "/User/SignIn"){
           props.history.push("/");
         }
 
       }else{
         //If User Logges Out...
         dispatch(setCurrentUser(null));
-        if(props.location.pathname !== "/SignIn") {
-          props.history.push("/SignUp");
-        }else if(props.location.pathname !== "/SignUp"){
-          props.history.push("/SignIn");
+        if(props.location.pathname !== "/User/SignIn") {
+          props.history.push("/User/SignUp");
+        }else if(props.location.pathname !== "/User/SignUp"){
+          props.history.push("/User/SignIn");
         }
       }
     })
@@ -91,8 +91,8 @@ function App(props) {
           </>
             :
           <>
-          <Route exact path="/SignIn" component={SignIn}/> 
-          <Route exact path="/SignUp" component={SignUp}/>
+          <Route exact path="/User/SignIn" component={SignIn}/> 
+          <Route exact path="/User/SignUp" component={SignUp}/>
           </>
           }
         </Switch>
