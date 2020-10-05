@@ -52,36 +52,49 @@ const [anchorEl, setAnchorEl] = React.useState(null);
         <div 
             className="MessageAdding" 
             style={{borderTop: chosenFile !== "" || uploadFile !== null ? "1px solid lightgrey": "none"}}>
-        
-        
-        {chosenFile !== "" ?       
-            <div className="chosenPhotoFile" style={{backgroundImage: `url(${chosenFile})`}}>
-            </div>
-            :
-            uploadFile !== null ?
-                <div className="chosenFile" style={{backgroundImage: `url(${chosenFile})`}}>
+
+      
+      <div className="chosenFiles">
+    {/* Showing Chosen Photo */}
+            {
+                chosenFile !== "" ?       
+                        <div className="chosenPhotoFile" style={{backgroundImage: `url(${chosenFile})`}}>
+                        </div>
+                    :
+                        ""
+            }
+    {/* Showing Chosen Photo */}
+
+    {/* Showing Chosen File */}
+            {uploadFile !== null ?
+                <div className="chosenFile">
                     <div className="fileIcon">
                         <DescriptionIcon />
                     </div>
                     <div className="chosenFileDescription">
                         <p>{uploadFile.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ?
-                            "application/docx":
-
+                                "application/docx"
+                            :
                                 uploadFile.type === "application/vnd.openxmlformats-officedocument.presentationml.presentation" ?
                                     "application/pptx"
                                 : 
                                     uploadFile.type
                         }</p>
                         <span>{ uploadFile.name.length > 20 ?
-                                    `${uploadFile.name.slice(0, 20)}...`
-                                :
-                                    uploadFile.name
-                            }</span>
+                            `${uploadFile.name.slice(0, 20)}...`
+                        :
+                            uploadFile.name
+                        }</span>
                     </div>
                 </div>
             :
                 ""
-        }
+            }
+    {/* Showing Chosen File */}
+      </div>
+        
+
+
                 <form onSubmit={(e) => {
                     e.preventDefault(); 
                     if(chosenFile !== ""){

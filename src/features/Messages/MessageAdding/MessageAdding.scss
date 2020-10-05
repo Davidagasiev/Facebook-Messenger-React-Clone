@@ -52,6 +52,11 @@
     }
 }
 
+.chosenFiles{
+    display: flex;
+    align-items: center;
+}
+
 .chosenPhotoFile, .chosenFile{
     margin: 10px; 
     margin-left: 25px;

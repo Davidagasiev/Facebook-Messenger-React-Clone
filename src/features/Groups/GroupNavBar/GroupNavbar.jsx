@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from "react-redux";
 
-import { Avatar, Button, CircularProgress, Divider, FormControlLabel, IconButton, Menu, MenuItem, Switch, TextField} from '@material-ui/core';
+import { Avatar, Button, CircularProgress, Divider, Grid, IconButton, Menu, MenuItem, Switch, TextField, Typography} from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +21,6 @@ import ProfileSettings from '../../ProfileSettings/ProfileSettings';
 
 export default function GroupNavbar(props) {
 
-    
     const users = useSelector(UsersSelector);
     const curUser = useSelector(CurrentUserSelector);
 
@@ -209,17 +208,19 @@ const classes = useStyles();
                                 />
     {/* Dark Mode Switching */}
                                 <MenuItem onClick={props.switchDarkMode}>
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-                                                checked={props.darkMode}
-                                                onChange={props.switchDarkMode}
-                                                name="DarkMode"
-                                                color="primary"
-                                            />
-                                            }
-                                            label="Night"
-                                        />
+                                    <Typography component="div">
+                                        <Grid component="label" container alignItems="center" spacing={1}>
+                                            <Grid item>Night Mode</Grid>
+                                                <Grid item>
+                                                    <Switch
+                                                        checked={props.darkMode}
+                                                        onChange={props.switchDarkMode}
+                                                        name="DarkMode"
+                                                        color="primary"
+                                                    />
+                                                </Grid>
+                                        </Grid>
+                                    </Typography>
                                 </MenuItem>
     {/* Dark Mode Switching */}
                                 <Divider />
