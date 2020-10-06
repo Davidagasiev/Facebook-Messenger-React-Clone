@@ -6,7 +6,7 @@ const SignInFunc = (email, password) => {
     auth
     .signInWithEmailAndPassword(email, password)
     .then(() => {
-        
+        window.location.reload();
     })
     .catch((error) => alert(error.message));
 }

@@ -28,12 +28,14 @@ export const signInWithGoogle = (users) => auth.signInWithPopup(provider)
                     photoURL: newUser.photoURL
                 })
                 .then(function(docRef) {
-
+                    window.location.reload();
+                    return;
                 })
                 .catch(function(error) {
 
                 });
             };
+        window.location.reload();
     })
     .catch(error => {
     });
@@ -50,12 +52,14 @@ export const signInWithFacebook = (users) => auth.signInWithPopup(facebookProvid
                     photoURL: newUser.photoURL
                 })
                 .then(function(docRef) {
-
+                    window.location.reload();
+                    return;
                 })
                 .catch(function(error) {
 
                 });
             };
+        window.location.reload();
     })
     .catch(error => {
     });

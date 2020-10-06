@@ -12,10 +12,11 @@ const SignUpFunc = (username, email, password) => {
           photoURL: "https://us.v-cdn.net/6022045/uploads/defaultavatar.png"
       })
       .then(function(docRef) {
+        window.location.reload();
       })
       .catch(function(error) {
       });
-
+      
       return authUser.user.updateProfile({
         displayName: username.split(' ').join(''),
         photoURL: "https://us.v-cdn.net/6022045/uploads/defaultavatar.png"
