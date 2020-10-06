@@ -33,6 +33,8 @@ export const signInWithGoogle = (users) => auth.signInWithPopup(provider)
                 .catch(function(error) {
 
                 });
+            }else{
+                window.location.reload();
             };
     })
     .catch(error => {
@@ -55,6 +57,8 @@ export const signInWithFacebook = (users) => auth.signInWithPopup(facebookProvid
                 .catch(function(error) {
 
                 });
+            }else{
+                window.location.reload();
             };
     })
     .catch(error => {
