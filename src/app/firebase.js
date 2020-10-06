@@ -29,13 +29,11 @@ export const signInWithGoogle = (users) => auth.signInWithPopup(provider)
                 })
                 .then(function(docRef) {
                     window.location.reload();
-                    return;
                 })
                 .catch(function(error) {
 
                 });
             };
-        window.location.reload();
     })
     .catch(error => {
     });
@@ -53,13 +51,11 @@ export const signInWithFacebook = (users) => auth.signInWithPopup(facebookProvid
                 })
                 .then(function(docRef) {
                     window.location.reload();
-                    return;
                 })
                 .catch(function(error) {
 
                 });
             };
-        window.location.reload();
     })
     .catch(error => {
     });

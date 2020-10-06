@@ -97,7 +97,7 @@ const classes = useStyles();
         <div className="GroupNavbar">
             <div className="GroupNavbarContent">
                 <div>
-                    <Avatar src={currentUser.photoURL || ""}/>
+                    <Avatar src={currentUser.photoURL}/>
                     <h2>Chats</h2>
                 </div>
 
